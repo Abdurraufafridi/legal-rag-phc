@@ -1,0 +1,17 @@
+{
+  "name": "baseline_legal_single",
+  "mode": "hybrid",
+  "fusion": "rrf",
+  "prefetch_limit": 50,
+  "candidate_limit": 50,
+  "rerank": true,
+  "rerank_max_docs": null,
+  "max_chunks_per_doc": null,
+  "final_top_k": 1,
+  "threshold": 0.6,
+  "include_document_level": true,
+  "dedupe_chunks": false,
+  "date_start": null,
+  "date_end": null,
+  "comment": "Replicates legal_rag_system.py: same retrieval, single best judgment, threshold 0.60."
+}

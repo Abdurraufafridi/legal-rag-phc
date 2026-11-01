@@ -1,0 +1,19 @@
+{
+  "name": "exp08_dense_only_rerank",
+  "mode": "dense",
+  "fusion": "rrf",
+  "prefetch_limit": 50,
+  "candidate_limit": 50,
+  "rerank": true,
+  "rerank_max_docs": null,
+  "max_chunks_per_doc": null,
+  "final_top_k": 3,
+  "threshold": 0.75,
+  "include_document_level": false,
+  "dedupe_chunks": false,
+  "date_start": null,
+  "date_end": null,
+  "embedding_max_seq_length": 512,
+  "reranker_max_length": 512,
+  "comment": "Ablation vs exp01: mode=dense"
+}

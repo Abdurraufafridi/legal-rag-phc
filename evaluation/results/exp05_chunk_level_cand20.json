@@ -1,0 +1,6735 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "exp05_chunk_level_cand20",
+  "timestamp_utc": "2026-10-27T05:25:04.556584+00:00",
+  "config": {
+    "name": "exp05_chunk_level_cand20",
+    "mode": "hybrid",
+    "fusion": "rrf",
+    "prefetch_limit": 20,
+    "candidate_limit": 20,
+    "rerank": true,
+    "rerank_max_docs": null,
+    "max_chunks_per_doc": null,
+    "final_top_k": 3,
+    "threshold": 0.75,
+    "include_document_level": false,
+    "rerank_include_document_level": true,
+    "dedupe_chunks": false,
+    "date_start": null,
+    "date_end": null,
+    "embedding_max_seq_length": 512,
+    "reranker_max_length": 512,
+    "comment": "exp01 with prefetch/candidate limit 20; one-factor candidate pool test."
+  },
+  "dataset": {
+    "dataset_version": "v1.0.0",
+    "n_queries": 44,
+    "n_qrels": 107,
+    "n_queries_with_qrels": 40,
+    "categories": {
+      "bail_abduction": 1,
+      "bail_cancellation": 3,
+      "bail_injury": 3,
+      "bail_murder": 3,
+      "bail_narcotics": 3,
+      "bail_other": 6,
+      "constitutional": 3,
+      "criminal_appeal": 8,
+      "out_of_domain": 4,
+      "procedure": 1,
+      "property_revision": 1,
+      "quashment": 8
+    },
+    "queries_sha256": "9013c3d9dccbf8d0e0eb7f45fb65af0bc8d600f012b05956747415a82ecae226",
+    "qrels_sha256": "586dc93a671bed11ded9c13c2c31b2e4ef75cfbdfffea05ffcb1a45fa8ef2886",
+    "n_documents_labeled": 74
+  },
+  "corpus": {
+    "pdf_count": 74,
+    "text_count": 74,
+    "chunk_file": "/Users/mc/Desktop/FYP code/rag_env/structure_dynamic_chunked.json",
+    "chunk_file_sha256": "64f03538edcbe71cc09b78d46ee913c6e98770b2b1346291b01efa9f66f4e8fc",
+    "vectorizer": "/Users/mc/Desktop/FYP code/rag_env/sparse_vectorizer_pak.pkl",
+    "vectorizer_sha256": "69277153e339eaf9964e93dc031b12e17ce21b1d9520f64fcb35e61bf585ca75",
+    "collection": {
+      "collection": "pak_legal_rag_multi",
+      "points_count": 1580,
+      "dense_size": 1024,
+      "dense_distance": "Cosine",
+      "sparse_vectors": [
+        "sparse"
+      ]
+    }
+  },
+  "environment": {
+    "python": "3.10.14",
+    "platform": "macOS-15.7.7-x86_64-i386-64bit",
+    "machine": "x86_64",
+    "packages": {
+      "torch": "2.2.2",
+      "sentence-transformers": "2.7.0",
+      "transformers": "4.40.2",
+      "qdrant-client": "1.17.1",
+      "scikit-learn": "1.4.2",
+      "numpy": "1.26.4",
+      "fastapi": "0.111.0"
+    },
+    "torch_num_threads": 6
+  },
+  "evaluation_protocol": {
+    "document_level": true,
+    "relevance_threshold": 1,
+    "ranking_mode": "top-10 ranked documents, no score threshold",
+    "production_mode": "top-3, threshold=0.75",
+    "cutoffs": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "mrr_cutoff": 10,
+    "repeats_per_query": 1,
+    "warmup_queries": 2
+  },
+  "metrics_ranking_top10": {
+    "metrics": {
+      "recall@1": {
+        "mean": 0.50125,
+        "n_queries": 40,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "precision@1": {
+        "mean": 0.95,
+        "n_queries": 40,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "ndcg@1": {
+        "mean": 0.9142857142857144,
+        "n_queries": 40,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "recall@3": {
+        "mean": 0.75125,
+        "n_queries": 40,
+        "min": 0.16666666666666666,
+        "max": 1.0
+      },
+      "precision@3": {
+        "mean": 0.5833333333333333,
+        "n_queries": 40,
+        "min": 0.3333333333333333,
+        "max": 1.0
+      },
+      "ndcg@3": {
+        "mean": 0.8737097874838626,
+        "n_queries": 40,
+        "min": 0.34192741420282435,
+        "max": 1.0
+      },
+      "recall@5": {
+        "mean": 0.8329166666666665,
+        "n_queries": 40,
+        "min": 0.16666666666666666,
+        "max": 1.0
+      },
+      "precision@5": {
+        "mean": 0.4049999999999999,
+        "n_queries": 40,
+        "min": 0.2,
+        "max": 1.0
+      },
+      "ndcg@5": {
+        "mean": 0.8808538218935963,
+        "n_queries": 40,
+        "min": 0.3666495063604039,
+        "max": 1.0
+      },
+      "recall@10": {
+        "mean": 0.8879166666666667,
+        "n_queries": 40,
+        "min": 0.2,
+        "max": 1.0
+      },
+      "precision@10": {
+        "mean": 0.22499999999999995,
+        "n_queries": 40,
+        "min": 0.1,
+        "max": 0.5
+      },
+      "ndcg@10": {
+        "mean": 0.9002357392059255,
+        "n_queries": 40,
+        "min": 0.416405142889796,
+        "max": 1.0
+      },
+      "mrr@10": {
+        "mean": 0.975,
+        "n_queries": 40,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "map@10": {
+        "mean": 0.8185515873015874,
+        "n_queries": 40,
+        "min": 0.2,
+        "max": 1.0
+      }
+    },
+    "per_query": {
+      "Q001": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "ndcg@1": 0.0,
+        "recall@3": 0.5,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.458057870519973,
+        "recall@5": 0.5,
+        "precision@5": 0.4,
+        "ndcg@5": 0.416405142889796,
+        "recall@10": 0.5,
+        "precision@10": 0.2,
+        "ndcg@10": 0.416405142889796,
+        "mrr@10": 0.5,
+        "first_relevant_rank": 2,
+        "map@10": 0.29166666666666663
+      },
+      "Q002": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.25,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.9467676761267002,
+        "recall@5": 0.5,
+        "precision@5": 0.4,
+        "ndcg@5": 0.9052598568324595,
+        "recall@10": 0.75,
+        "precision@10": 0.3,
+        "ndcg@10": 0.9415207034296719,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.625
+      },
+      "Q003": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "ndcg@1": 0.0,
+        "recall@3": 0.25,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.34192741420282435,
+        "recall@5": 0.5,
+        "precision@5": 0.4,
+        "ndcg@5": 0.39251517057107477,
+        "recall@10": 1.0,
+        "precision@10": 0.4,
+        "ndcg@10": 0.6183127965454023,
+        "mrr@10": 0.5,
+        "first_relevant_rank": 2,
+        "map@10": 0.45714285714285713
+      },
+      "Q004": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.6131471927654584,
+        "recall@5": 0.5,
+        "precision@5": 0.2,
+        "ndcg@5": 0.6131471927654584,
+        "recall@10": 0.5,
+        "precision@10": 0.1,
+        "ndcg@10": 0.6131471927654584,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.5
+      },
+      "Q005": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q006": {
+        "has_qrels": true,
+        "relevant_count": 5,
+        "recall@1": 0.2,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.4,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.7039180890341348,
+        "recall@5": 0.6,
+        "precision@5": 0.6,
+        "ndcg@5": 0.6789086445487241,
+        "recall@10": 0.8,
+        "precision@10": 0.4,
+        "ndcg@10": 0.822465353343904,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.6166666666666666
+      },
+      "Q007": {
+        "has_qrels": true,
+        "relevant_count": 6,
+        "recall@1": 0.16666666666666666,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.16666666666666666,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.4692787260227565,
+        "recall@5": 0.16666666666666666,
+        "precision@5": 0.2,
+        "ndcg@5": 0.3666495063604039,
+        "recall@10": 0.5,
+        "precision@10": 0.3,
+        "ndcg@10": 0.5866336713237689,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.29365079365079366
+      },
+      "Q008": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.25,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.75,
+        "precision@3": 1.0,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.8,
+        "ndcg@5": 0.9955388707359232,
+        "recall@10": 1.0,
+        "precision@10": 0.4,
+        "ndcg@10": 0.9955388707359232,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.95
+      },
+      "Q009": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.25,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.75,
+        "precision@3": 1.0,
+        "ndcg@3": 1.0,
+        "recall@5": 0.75,
+        "precision@5": 0.6,
+        "ndcg@5": 0.90906666971382,
+        "recall@10": 1.0,
+        "precision@10": 0.4,
+        "ndcg@10": 0.9794468878315378,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.8928571428571428
+      },
+      "Q010": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.9173194127129571,
+        "recall@5": 0.5,
+        "precision@5": 0.2,
+        "ndcg@5": 0.9173194127129571,
+        "recall@10": 0.5,
+        "precision@10": 0.1,
+        "ndcg@10": 0.9173194127129571,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.5
+      },
+      "Q011": {
+        "has_qrels": true,
+        "relevant_count": 5,
+        "recall@1": 0.2,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.6,
+        "precision@3": 1.0,
+        "ndcg@3": 1.0,
+        "recall@5": 0.6,
+        "precision@5": 0.6,
+        "ndcg@5": 0.884971734606542,
+        "recall@10": 0.6,
+        "precision@10": 0.3,
+        "ndcg@10": 0.884971734606542,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.6
+      },
+      "Q012": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.25,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.75,
+        "precision@3": 1.0,
+        "ndcg@3": 0.9037794402528602,
+        "recall@5": 1.0,
+        "precision@5": 0.8,
+        "ndcg@5": 0.9871901582936081,
+        "recall@10": 1.0,
+        "precision@10": 0.4,
+        "ndcg@10": 0.9871901582936081,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q013": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q014": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.6,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.3,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q015": {
+        "has_qrels": true,
+        "relevant_count": 5,
+        "recall@1": 0.2,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.2,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.541942129480027,
+        "recall@5": 0.2,
+        "precision@5": 0.2,
+        "ndcg@5": 0.4554594382818066,
+        "recall@10": 0.2,
+        "precision@10": 0.1,
+        "ndcg@10": 0.4554594382818066,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.2
+      },
+      "Q016": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.6666666666666666,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.9224037382324788,
+        "recall@5": 0.6666666666666666,
+        "precision@5": 0.4,
+        "ndcg@5": 0.9224037382324788,
+        "recall@10": 1.0,
+        "precision@10": 0.3,
+        "ndcg@10": 0.9662126503623075,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.7222222222222222
+      },
+      "Q017": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q018": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q019": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.6666666666666666,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.9467676761267002,
+        "recall@5": 0.6666666666666666,
+        "precision@5": 0.4,
+        "ndcg@5": 0.9467676761267002,
+        "recall@10": 1.0,
+        "precision@10": 0.3,
+        "ndcg@10": 0.9822558920422334,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.8095238095238094
+      },
+      "Q020": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.7871546029909718,
+        "recall@5": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 0.9324441894571632,
+        "recall@10": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 0.9324441894571632,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.75
+      },
+      "Q021": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.6666666666666666,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.9580414003446834,
+        "recall@5": 0.6666666666666666,
+        "precision@5": 0.4,
+        "ndcg@5": 0.9580414003446834,
+        "recall@10": 0.6666666666666666,
+        "precision@10": 0.2,
+        "ndcg@10": 0.9580414003446834,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.6666666666666666
+      },
+      "Q022": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.6,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.3,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q023": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.25,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.75,
+        "precision@3": 1.0,
+        "ndcg@3": 0.8617599676775869,
+        "recall@5": 1.0,
+        "precision@5": 0.8,
+        "ndcg@5": 0.9307550306045228,
+        "recall@10": 1.0,
+        "precision@10": 0.4,
+        "ndcg@10": 0.9307550306045228,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q024": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q025": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q026": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q027": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q028": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.9828422279067397,
+        "recall@5": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 0.9828422279067397,
+        "recall@10": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 0.9828422279067397,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.8333333333333333
+      },
+      "Q029": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.6131471927654584,
+        "recall@5": 0.5,
+        "precision@5": 0.2,
+        "ndcg@5": 0.6131471927654584,
+        "recall@10": 0.5,
+        "precision@10": 0.1,
+        "ndcg@10": 0.6131471927654584,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.5
+      },
+      "Q030": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q031": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q032": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q033": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q034": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.6666666666666666,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.8556691603792903,
+        "recall@5": 1.0,
+        "precision@5": 0.6,
+        "ndcg@5": 0.9799889788426707,
+        "recall@10": 1.0,
+        "precision@10": 0.3,
+        "ndcg@10": 0.9799889788426707,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.9166666666666666
+      },
+      "Q035": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.6131471927654584,
+        "recall@5": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 0.8772153153380492,
+        "recall@10": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 0.8772153153380492,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.75
+      },
+      "Q036": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q037": {
+        "has_qrels": true,
+        "relevant_count": 5,
+        "recall@1": 0.2,
+        "precision@1": 1.0,
+        "ndcg@1": 0.42857142857142855,
+        "recall@3": 0.6,
+        "precision@3": 1.0,
+        "ndcg@3": 0.8451593915771352,
+        "recall@5": 1.0,
+        "precision@5": 1.0,
+        "ndcg@5": 0.8543764002706543,
+        "recall@10": 1.0,
+        "precision@10": 0.5,
+        "ndcg@10": 0.8543764002706543,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q038": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 0.14285714285714285,
+        "recall@3": 0.6666666666666666,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.6661609974703122,
+        "recall@5": 1.0,
+        "precision@5": 0.6,
+        "ndcg@5": 0.7137389275421615,
+        "recall@10": 1.0,
+        "precision@10": 0.3,
+        "ndcg@10": 0.7137389275421615,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.8666666666666667
+      },
+      "Q039": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q040": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      }
+    },
+    "n_queries_with_qrels": 40,
+    "n_queries_without_qrels": 0
+  },
+  "metrics_production": {
+    "metrics": {
+      "recall@1": {
+        "mean": 0.50125,
+        "n_queries": 40,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "precision@1": {
+        "mean": 0.95,
+        "n_queries": 40,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "ndcg@1": {
+        "mean": 0.9142857142857144,
+        "n_queries": 40,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "recall@3": {
+        "mean": 0.6941666666666668,
+        "n_queries": 40,
+        "min": 0.16666666666666666,
+        "max": 1.0
+      },
+      "precision@3": {
+        "mean": 0.5250000000000001,
+        "n_queries": 40,
+        "min": 0.3333333333333333,
+        "max": 1.0
+      },
+      "ndcg@3": {
+        "mean": 0.8579132344801078,
+        "n_queries": 40,
+        "min": 0.34192741420282435,
+        "max": 1.0
+      },
+      "recall@5": {
+        "mean": 0.6941666666666668,
+        "n_queries": 40,
+        "min": 0.16666666666666666,
+        "max": 1.0
+      },
+      "precision@5": {
+        "mean": 0.3149999999999999,
+        "n_queries": 40,
+        "min": 0.2,
+        "max": 0.6
+      },
+      "ndcg@5": {
+        "mean": 0.8391289988465364,
+        "n_queries": 40,
+        "min": 0.31083481571321947,
+        "max": 1.0
+      },
+      "recall@10": {
+        "mean": 0.6941666666666668,
+        "n_queries": 40,
+        "min": 0.16666666666666666,
+        "max": 1.0
+      },
+      "precision@10": {
+        "mean": 0.15749999999999995,
+        "n_queries": 40,
+        "min": 0.1,
+        "max": 0.3
+      },
+      "ndcg@10": {
+        "mean": 0.8386431341088357,
+        "n_queries": 40,
+        "min": 0.31083481571321947,
+        "max": 1.0
+      },
+      "mrr@10": {
+        "mean": 0.975,
+        "n_queries": 40,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "map@10": {
+        "mean": 0.6841666666666668,
+        "n_queries": 40,
+        "min": 0.125,
+        "max": 1.0
+      }
+    },
+    "per_query": {
+      "Q001": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "ndcg@1": 0.0,
+        "recall@3": 0.5,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.458057870519973,
+        "recall@5": 0.5,
+        "precision@5": 0.4,
+        "ndcg@5": 0.416405142889796,
+        "recall@10": 0.5,
+        "precision@10": 0.2,
+        "ndcg@10": 0.416405142889796,
+        "mrr@10": 0.5,
+        "first_relevant_rank": 2,
+        "map@10": 0.29166666666666663
+      },
+      "Q002": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.25,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.9467676761267002,
+        "recall@5": 0.5,
+        "precision@5": 0.4,
+        "ndcg@5": 0.9052598568324595,
+        "recall@10": 0.5,
+        "precision@10": 0.2,
+        "ndcg@10": 0.9052598568324595,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.5
+      },
+      "Q003": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.0,
+        "precision@1": 0.0,
+        "ndcg@1": 0.0,
+        "recall@3": 0.25,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.34192741420282435,
+        "recall@5": 0.25,
+        "precision@5": 0.2,
+        "ndcg@5": 0.31083481571321947,
+        "recall@10": 0.25,
+        "precision@10": 0.1,
+        "ndcg@10": 0.31083481571321947,
+        "mrr@10": 0.5,
+        "first_relevant_rank": 2,
+        "map@10": 0.125
+      },
+      "Q004": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.6131471927654584,
+        "recall@5": 0.5,
+        "precision@5": 0.2,
+        "ndcg@5": 0.6131471927654584,
+        "recall@10": 0.5,
+        "precision@10": 0.1,
+        "ndcg@10": 0.6131471927654584,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.5
+      },
+      "Q005": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q006": {
+        "has_qrels": true,
+        "relevant_count": 5,
+        "recall@1": 0.2,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.4,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.7039180890341348,
+        "recall@5": 0.4,
+        "precision@5": 0.4,
+        "ndcg@5": 0.6045219495458081,
+        "recall@10": 0.4,
+        "precision@10": 0.2,
+        "ndcg@10": 0.6045219495458081,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.3333333333333333
+      },
+      "Q007": {
+        "has_qrels": true,
+        "relevant_count": 6,
+        "recall@1": 0.16666666666666666,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.16666666666666666,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.4692787260227565,
+        "recall@5": 0.16666666666666666,
+        "precision@5": 0.2,
+        "ndcg@5": 0.3666495063604039,
+        "recall@10": 0.16666666666666666,
+        "precision@10": 0.1,
+        "ndcg@10": 0.34721491685237804,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.16666666666666666
+      },
+      "Q008": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.25,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.75,
+        "precision@3": 1.0,
+        "ndcg@3": 1.0,
+        "recall@5": 0.75,
+        "precision@5": 0.6,
+        "ndcg@5": 0.9561583899187893,
+        "recall@10": 0.75,
+        "precision@10": 0.3,
+        "ndcg@10": 0.9561583899187893,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.75
+      },
+      "Q009": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.25,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.75,
+        "precision@3": 1.0,
+        "ndcg@3": 1.0,
+        "recall@5": 0.75,
+        "precision@5": 0.6,
+        "ndcg@5": 0.90906666971382,
+        "recall@10": 0.75,
+        "precision@10": 0.3,
+        "ndcg@10": 0.90906666971382,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.75
+      },
+      "Q010": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.9173194127129571,
+        "recall@5": 0.5,
+        "precision@5": 0.2,
+        "ndcg@5": 0.9173194127129571,
+        "recall@10": 0.5,
+        "precision@10": 0.1,
+        "ndcg@10": 0.9173194127129571,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.5
+      },
+      "Q011": {
+        "has_qrels": true,
+        "relevant_count": 5,
+        "recall@1": 0.2,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.4,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.8838695436828513,
+        "recall@5": 0.4,
+        "precision@5": 0.4,
+        "ndcg@5": 0.7821995632389057,
+        "recall@10": 0.4,
+        "precision@10": 0.2,
+        "ndcg@10": 0.7821995632389057,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.4
+      },
+      "Q012": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.25,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.8556691603792903,
+        "recall@5": 0.5,
+        "precision@5": 0.4,
+        "ndcg@5": 0.8216212264723879,
+        "recall@10": 0.5,
+        "precision@10": 0.2,
+        "ndcg@10": 0.8216212264723879,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.5
+      },
+      "Q013": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q014": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 1.0,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.6,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.3,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q015": {
+        "has_qrels": true,
+        "relevant_count": 5,
+        "recall@1": 0.2,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.2,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.541942129480027,
+        "recall@5": 0.2,
+        "precision@5": 0.2,
+        "ndcg@5": 0.4554594382818066,
+        "recall@10": 0.2,
+        "precision@10": 0.1,
+        "ndcg@10": 0.4554594382818066,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.2
+      },
+      "Q016": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.3333333333333333,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.8609101556836468,
+        "recall@5": 0.3333333333333333,
+        "precision@5": 0.2,
+        "ndcg@5": 0.8609101556836468,
+        "recall@10": 0.3333333333333333,
+        "precision@10": 0.1,
+        "ndcg@10": 0.8609101556836468,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.3333333333333333
+      },
+      "Q017": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q018": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q019": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.3333333333333333,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.7452525342261976,
+        "recall@5": 0.3333333333333333,
+        "precision@5": 0.2,
+        "ndcg@5": 0.7452525342261976,
+        "recall@10": 0.3333333333333333,
+        "precision@10": 0.1,
+        "ndcg@10": 0.7452525342261976,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.3333333333333333
+      },
+      "Q020": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.7871546029909718,
+        "recall@5": 0.5,
+        "precision@5": 0.2,
+        "ndcg@5": 0.7871546029909718,
+        "recall@10": 0.5,
+        "precision@10": 0.1,
+        "ndcg@10": 0.7871546029909718,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.5
+      },
+      "Q021": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.6666666666666666,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.9580414003446834,
+        "recall@5": 0.6666666666666666,
+        "precision@5": 0.4,
+        "ndcg@5": 0.9580414003446834,
+        "recall@10": 0.6666666666666666,
+        "precision@10": 0.2,
+        "ndcg@10": 0.9580414003446834,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.6666666666666666
+      },
+      "Q022": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.3333333333333333,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.8609101556836468,
+        "recall@5": 0.3333333333333333,
+        "precision@5": 0.2,
+        "ndcg@5": 0.8609101556836468,
+        "recall@10": 0.3333333333333333,
+        "precision@10": 0.1,
+        "ndcg@10": 0.8609101556836468,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.3333333333333333
+      },
+      "Q023": {
+        "has_qrels": true,
+        "relevant_count": 4,
+        "recall@1": 0.25,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.75,
+        "precision@3": 1.0,
+        "ndcg@3": 0.8617599676775869,
+        "recall@5": 0.75,
+        "precision@5": 0.6,
+        "ndcg@5": 0.833953368652663,
+        "recall@10": 0.75,
+        "precision@10": 0.3,
+        "ndcg@10": 0.833953368652663,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.75
+      },
+      "Q024": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q025": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q026": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q027": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q028": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.9173194127129571,
+        "recall@5": 0.5,
+        "precision@5": 0.2,
+        "ndcg@5": 0.9173194127129571,
+        "recall@10": 0.5,
+        "precision@10": 0.1,
+        "ndcg@10": 0.9173194127129571,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.5
+      },
+      "Q029": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.6131471927654584,
+        "recall@5": 0.5,
+        "precision@5": 0.2,
+        "ndcg@5": 0.6131471927654584,
+        "recall@10": 0.5,
+        "precision@10": 0.1,
+        "ndcg@10": 0.6131471927654584,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.5
+      },
+      "Q030": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q031": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q032": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q033": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q034": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.6666666666666666,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.8556691603792903,
+        "recall@5": 0.6666666666666666,
+        "precision@5": 0.4,
+        "ndcg@5": 0.8556691603792903,
+        "recall@10": 0.6666666666666666,
+        "precision@10": 0.2,
+        "ndcg@10": 0.8556691603792903,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.6666666666666666
+      },
+      "Q035": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 0.5,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 0.6131471927654584,
+        "recall@5": 0.5,
+        "precision@5": 0.2,
+        "ndcg@5": 0.6131471927654584,
+        "recall@10": 0.5,
+        "precision@10": 0.1,
+        "ndcg@10": 0.6131471927654584,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.5
+      },
+      "Q036": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q037": {
+        "has_qrels": true,
+        "relevant_count": 5,
+        "recall@1": 0.2,
+        "precision@1": 1.0,
+        "ndcg@1": 0.42857142857142855,
+        "recall@3": 0.6,
+        "precision@3": 1.0,
+        "ndcg@3": 0.8451593915771352,
+        "recall@5": 0.6,
+        "precision@5": 0.6,
+        "ndcg@5": 0.7948506157403599,
+        "recall@10": 0.6,
+        "precision@10": 0.3,
+        "ndcg@10": 0.7948506157403599,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.6
+      },
+      "Q038": {
+        "has_qrels": true,
+        "relevant_count": 3,
+        "recall@1": 0.3333333333333333,
+        "precision@1": 1.0,
+        "ndcg@1": 0.14285714285714285,
+        "recall@3": 0.6666666666666666,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 0.6661609974703122,
+        "recall@5": 0.6666666666666666,
+        "precision@5": 0.4,
+        "ndcg@5": 0.6661609974703122,
+        "recall@10": 0.6666666666666666,
+        "precision@10": 0.2,
+        "ndcg@10": 0.6661609974703122,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 0.6666666666666666
+      },
+      "Q039": {
+        "has_qrels": true,
+        "relevant_count": 1,
+        "recall@1": 1.0,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.2,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.1,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      },
+      "Q040": {
+        "has_qrels": true,
+        "relevant_count": 2,
+        "recall@1": 0.5,
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "recall@3": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "recall@5": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "mrr@10": 1.0,
+        "first_relevant_rank": 1,
+        "map@10": 1.0
+      }
+    },
+    "n_queries_with_qrels": 40,
+    "n_queries_without_qrels": 0
+  },
+  "metrics_by_category_top10": {
+    "bail_abduction": {
+      "recall@1": {
+        "mean": 0.2,
+        "n_queries": 1,
+        "min": 0.2,
+        "max": 0.2
+      },
+      "precision@1": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "ndcg@1": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@3": {
+        "mean": 0.6,
+        "n_queries": 1,
+        "min": 0.6,
+        "max": 0.6
+      },
+      "precision@3": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "ndcg@3": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@5": {
+        "mean": 0.6,
+        "n_queries": 1,
+        "min": 0.6,
+        "max": 0.6
+      },
+      "precision@5": {
+        "mean": 0.6,
+        "n_queries": 1,
+        "min": 0.6,
+        "max": 0.6
+      },
+      "ndcg@5": {
+        "mean": 0.884971734606542,
+        "n_queries": 1,
+        "min": 0.884971734606542,
+        "max": 0.884971734606542
+      },
+      "recall@10": {
+        "mean": 0.6,
+        "n_queries": 1,
+        "min": 0.6,
+        "max": 0.6
+      },
+      "precision@10": {
+        "mean": 0.3,
+        "n_queries": 1,
+        "min": 0.3,
+        "max": 0.3
+      },
+      "ndcg@10": {
+        "mean": 0.884971734606542,
+        "n_queries": 1,
+        "min": 0.884971734606542,
+        "max": 0.884971734606542
+      },
+      "mrr@10": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "map@10": {
+        "mean": 0.6,
+        "n_queries": 1,
+        "min": 0.6,
+        "max": 0.6
+      }
+    },
+    "bail_cancellation": {
+      "recall@1": {
+        "mean": 0.27777777777777773,
+        "n_queries": 3,
+        "min": 0.25,
+        "max": 0.3333333333333333
+      },
+      "precision@1": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "ndcg@1": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@3": {
+        "mean": 0.7222222222222222,
+        "n_queries": 3,
+        "min": 0.6666666666666666,
+        "max": 0.75
+      },
+      "precision@3": {
+        "mean": 0.8888888888888888,
+        "n_queries": 3,
+        "min": 0.6666666666666666,
+        "max": 1.0
+      },
+      "ndcg@3": {
+        "mean": 0.9198162002107168,
+        "n_queries": 3,
+        "min": 0.8556691603792903,
+        "max": 1.0
+      },
+      "recall@5": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "precision@5": {
+        "mean": 0.7333333333333334,
+        "n_queries": 3,
+        "min": 0.6,
+        "max": 0.8
+      },
+      "ndcg@5": {
+        "mean": 0.987572669290734,
+        "n_queries": 3,
+        "min": 0.9799889788426707,
+        "max": 0.9955388707359232
+      },
+      "recall@10": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "precision@10": {
+        "mean": 0.3666666666666667,
+        "n_queries": 3,
+        "min": 0.3,
+        "max": 0.4
+      },
+      "ndcg@10": {
+        "mean": 0.987572669290734,
+        "n_queries": 3,
+        "min": 0.9799889788426707,
+        "max": 0.9955388707359232
+      },
+      "mrr@10": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "map@10": {
+        "mean": 0.9555555555555556,
+        "n_queries": 3,
+        "min": 0.9166666666666666,
+        "max": 1.0
+      }
+    },
+    "bail_injury": {
+      "recall@1": {
+        "mean": 0.3611111111111111,
+        "n_queries": 3,
+        "min": 0.25,
+        "max": 0.5
+      },
+      "precision@1": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "ndcg@1": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@3": {
+        "mean": 0.75,
+        "n_queries": 3,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "precision@3": {
+        "mean": 0.7777777777777777,
+        "n_queries": 3,
+        "min": 0.3333333333333333,
+        "max": 1.0
+      },
+      "ndcg@3": {
+        "mean": 0.9724398042376524,
+        "n_queries": 3,
+        "min": 0.9173194127129571,
+        "max": 1.0
+      },
+      "recall@5": {
+        "mean": 0.75,
+        "n_queries": 3,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "precision@5": {
+        "mean": 0.4666666666666666,
+        "n_queries": 3,
+        "min": 0.2,
+        "max": 0.6
+      },
+      "ndcg@5": {
+        "mean": 0.9421286941422591,
+        "n_queries": 3,
+        "min": 0.90906666971382,
+        "max": 1.0
+      },
+      "recall@10": {
+        "mean": 0.8333333333333334,
+        "n_queries": 3,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "precision@10": {
+        "mean": 0.26666666666666666,
+        "n_queries": 3,
+        "min": 0.1,
+        "max": 0.4
+      },
+      "ndcg@10": {
+        "mean": 0.965588766848165,
+        "n_queries": 3,
+        "min": 0.9173194127129571,
+        "max": 1.0
+      },
+      "mrr@10": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "map@10": {
+        "mean": 0.7976190476190476,
+        "n_queries": 3,
+        "min": 0.5,
+        "max": 1.0
+      }
+    },
+    "bail_murder": {
+      "recall@1": {
+        "mean": 0.18888888888888888,
+        "n_queries": 3,
+        "min": 0.16666666666666666,
+        "max": 0.2
+      },
+      "precision@1": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "ndcg@1": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@3": {
+        "mean": 0.25555555555555554,
+        "n_queries": 3,
+        "min": 0.16666666666666666,
+        "max": 0.4
+      },
+      "precision@3": {
+        "mean": 0.4444444444444444,
+        "n_queries": 3,
+        "min": 0.3333333333333333,
+        "max": 0.6666666666666666
+      },
+      "ndcg@3": {
+        "mean": 0.571712981512306,
+        "n_queries": 3,
+        "min": 0.4692787260227565,
+        "max": 0.7039180890341348
+      },
+      "recall@5": {
+        "mean": 0.3222222222222222,
+        "n_queries": 3,
+        "min": 0.16666666666666666,
+        "max": 0.6
+      },
+      "precision@5": {
+        "mean": 0.3333333333333333,
+        "n_queries": 3,
+        "min": 0.2,
+        "max": 0.6
+      },
+      "ndcg@5": {
+        "mean": 0.5003391963969782,
+        "n_queries": 3,
+        "min": 0.3666495063604039,
+        "max": 0.6789086445487241
+      },
+      "recall@10": {
+        "mean": 0.5,
+        "n_queries": 3,
+        "min": 0.2,
+        "max": 0.8
+      },
+      "precision@10": {
+        "mean": 0.26666666666666666,
+        "n_queries": 3,
+        "min": 0.1,
+        "max": 0.4
+      },
+      "ndcg@10": {
+        "mean": 0.6215194876498265,
+        "n_queries": 3,
+        "min": 0.4554594382818066,
+        "max": 0.822465353343904
+      },
+      "mrr@10": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "map@10": {
+        "mean": 0.37010582010582005,
+        "n_queries": 3,
+        "min": 0.2,
+        "max": 0.6166666666666666
+      }
+    },
+    "bail_narcotics": {
+      "recall@1": {
+        "mean": 0.08333333333333333,
+        "n_queries": 3,
+        "min": 0.0,
+        "max": 0.25
+      },
+      "precision@1": {
+        "mean": 0.3333333333333333,
+        "n_queries": 3,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "ndcg@1": {
+        "mean": 0.3333333333333333,
+        "n_queries": 3,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "recall@3": {
+        "mean": 0.4166666666666667,
+        "n_queries": 3,
+        "min": 0.25,
+        "max": 0.5
+      },
+      "precision@3": {
+        "mean": 0.5555555555555555,
+        "n_queries": 3,
+        "min": 0.3333333333333333,
+        "max": 0.6666666666666666
+      },
+      "ndcg@3": {
+        "mean": 0.5822509869498326,
+        "n_queries": 3,
+        "min": 0.34192741420282435,
+        "max": 0.9467676761267002
+      },
+      "recall@5": {
+        "mean": 0.5,
+        "n_queries": 3,
+        "min": 0.5,
+        "max": 0.5
+      },
+      "precision@5": {
+        "mean": 0.4000000000000001,
+        "n_queries": 3,
+        "min": 0.4,
+        "max": 0.4
+      },
+      "ndcg@5": {
+        "mean": 0.5713933900977767,
+        "n_queries": 3,
+        "min": 0.39251517057107477,
+        "max": 0.9052598568324595
+      },
+      "recall@10": {
+        "mean": 0.75,
+        "n_queries": 3,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "precision@10": {
+        "mean": 0.3,
+        "n_queries": 3,
+        "min": 0.2,
+        "max": 0.4
+      },
+      "ndcg@10": {
+        "mean": 0.65874621428829,
+        "n_queries": 3,
+        "min": 0.416405142889796,
+        "max": 0.9415207034296719
+      },
+      "mrr@10": {
+        "mean": 0.6666666666666666,
+        "n_queries": 3,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "map@10": {
+        "mean": 0.4579365079365079,
+        "n_queries": 3,
+        "min": 0.29166666666666663,
+        "max": 0.625
+      }
+    },
+    "bail_other": {
+      "recall@1": {
+        "mean": 0.6722222222222222,
+        "n_queries": 6,
+        "min": 0.2,
+        "max": 1.0
+      },
+      "precision@1": {
+        "mean": 1.0,
+        "n_queries": 6,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "ndcg@1": {
+        "mean": 0.7619047619047619,
+        "n_queries": 6,
+        "min": 0.14285714285714285,
+        "max": 1.0
+      },
+      "recall@3": {
+        "mean": 0.7944444444444444,
+        "n_queries": 6,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "precision@3": {
+        "mean": 0.5,
+        "n_queries": 6,
+        "min": 0.3333333333333333,
+        "max": 1.0
+      },
+      "ndcg@3": {
+        "mean": 0.854077930302151,
+        "n_queries": 6,
+        "min": 0.6131471927654584,
+        "max": 1.0
+      },
+      "recall@5": {
+        "mean": 1.0,
+        "n_queries": 6,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "precision@5": {
+        "mean": 0.43333333333333335,
+        "n_queries": 6,
+        "min": 0.2,
+        "max": 1.0
+      },
+      "ndcg@5": {
+        "mean": 0.9075551071918108,
+        "n_queries": 6,
+        "min": 0.7137389275421615,
+        "max": 1.0
+      },
+      "recall@10": {
+        "mean": 1.0,
+        "n_queries": 6,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "precision@10": {
+        "mean": 0.21666666666666667,
+        "n_queries": 6,
+        "min": 0.1,
+        "max": 0.5
+      },
+      "ndcg@10": {
+        "mean": 0.9075551071918108,
+        "n_queries": 6,
+        "min": 0.7137389275421615,
+        "max": 1.0
+      },
+      "mrr@10": {
+        "mean": 1.0,
+        "n_queries": 6,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "map@10": {
+        "mean": 0.9361111111111112,
+        "n_queries": 6,
+        "min": 0.75,
+        "max": 1.0
+      }
+    },
+    "constitutional": {
+      "recall@1": {
+        "mean": 0.8333333333333334,
+        "n_queries": 3,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "precision@1": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "ndcg@1": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@3": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "precision@3": {
+        "mean": 0.4444444444444444,
+        "n_queries": 3,
+        "min": 0.3333333333333333,
+        "max": 0.6666666666666666
+      },
+      "ndcg@3": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@5": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "precision@5": {
+        "mean": 0.26666666666666666,
+        "n_queries": 3,
+        "min": 0.2,
+        "max": 0.4
+      },
+      "ndcg@5": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@10": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "precision@10": {
+        "mean": 0.13333333333333333,
+        "n_queries": 3,
+        "min": 0.1,
+        "max": 0.2
+      },
+      "ndcg@10": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "mrr@10": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "map@10": {
+        "mean": 1.0,
+        "n_queries": 3,
+        "min": 1.0,
+        "max": 1.0
+      }
+    },
+    "criminal_appeal": {
+      "recall@1": {
+        "mean": 0.65625,
+        "n_queries": 8,
+        "min": 0.25,
+        "max": 1.0
+      },
+      "precision@1": {
+        "mean": 1.0,
+        "n_queries": 8,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "ndcg@1": {
+        "mean": 1.0,
+        "n_queries": 8,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@3": {
+        "mean": 0.84375,
+        "n_queries": 8,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "precision@3": {
+        "mean": 0.5,
+        "n_queries": 8,
+        "min": 0.3333333333333333,
+        "max": 1.0
+      },
+      "ndcg@3": {
+        "mean": 0.8838620726394054,
+        "n_queries": 8,
+        "min": 0.6131471927654584,
+        "max": 1.0
+      },
+      "recall@5": {
+        "mean": 0.875,
+        "n_queries": 8,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "precision@5": {
+        "mean": 0.325,
+        "n_queries": 8,
+        "min": 0.2,
+        "max": 0.8
+      },
+      "ndcg@5": {
+        "mean": 0.8924864555052724,
+        "n_queries": 8,
+        "min": 0.6131471927654584,
+        "max": 1.0
+      },
+      "recall@10": {
+        "mean": 0.875,
+        "n_queries": 8,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "precision@10": {
+        "mean": 0.1625,
+        "n_queries": 8,
+        "min": 0.1,
+        "max": 0.4
+      },
+      "ndcg@10": {
+        "mean": 0.8924864555052724,
+        "n_queries": 8,
+        "min": 0.6131471927654584,
+        "max": 1.0
+      },
+      "mrr@10": {
+        "mean": 1.0,
+        "n_queries": 8,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "map@10": {
+        "mean": 0.8541666666666666,
+        "n_queries": 8,
+        "min": 0.5,
+        "max": 1.0
+      }
+    },
+    "procedure": {
+      "recall@1": {
+        "mean": 0.5,
+        "n_queries": 1,
+        "min": 0.5,
+        "max": 0.5
+      },
+      "precision@1": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "ndcg@1": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@3": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "precision@3": {
+        "mean": 0.6666666666666666,
+        "n_queries": 1,
+        "min": 0.6666666666666666,
+        "max": 0.6666666666666666
+      },
+      "ndcg@3": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@5": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "precision@5": {
+        "mean": 0.4,
+        "n_queries": 1,
+        "min": 0.4,
+        "max": 0.4
+      },
+      "ndcg@5": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@10": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "precision@10": {
+        "mean": 0.2,
+        "n_queries": 1,
+        "min": 0.2,
+        "max": 0.2
+      },
+      "ndcg@10": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "mrr@10": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "map@10": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      }
+    },
+    "property_revision": {
+      "recall@1": {
+        "mean": 0.5,
+        "n_queries": 1,
+        "min": 0.5,
+        "max": 0.5
+      },
+      "precision@1": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "ndcg@1": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@3": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "precision@3": {
+        "mean": 0.6666666666666666,
+        "n_queries": 1,
+        "min": 0.6666666666666666,
+        "max": 0.6666666666666666
+      },
+      "ndcg@3": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@5": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "precision@5": {
+        "mean": 0.4,
+        "n_queries": 1,
+        "min": 0.4,
+        "max": 0.4
+      },
+      "ndcg@5": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@10": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "precision@10": {
+        "mean": 0.2,
+        "n_queries": 1,
+        "min": 0.2,
+        "max": 0.2
+      },
+      "ndcg@10": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "mrr@10": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "map@10": {
+        "mean": 1.0,
+        "n_queries": 1,
+        "min": 1.0,
+        "max": 1.0
+      }
+    },
+    "quashment": {
+      "recall@1": {
+        "mean": 0.5416666666666667,
+        "n_queries": 8,
+        "min": 0.3333333333333333,
+        "max": 1.0
+      },
+      "precision@1": {
+        "mean": 1.0,
+        "n_queries": 8,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "ndcg@1": {
+        "mean": 1.0,
+        "n_queries": 8,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "recall@3": {
+        "mean": 0.8125,
+        "n_queries": 8,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "precision@3": {
+        "mean": 0.5833333333333334,
+        "n_queries": 8,
+        "min": 0.3333333333333333,
+        "max": 1.0
+      },
+      "ndcg@3": {
+        "mean": 0.9517959272118542,
+        "n_queries": 8,
+        "min": 0.7871546029909718,
+        "max": 1.0
+      },
+      "recall@5": {
+        "mean": 0.875,
+        "n_queries": 8,
+        "min": 0.6666666666666666,
+        "max": 1.0
+      },
+      "precision@5": {
+        "mean": 0.375,
+        "n_queries": 8,
+        "min": 0.2,
+        "max": 0.6
+      },
+      "ndcg@5": {
+        "mean": 0.9699571255201282,
+        "n_queries": 8,
+        "min": 0.9224037382324788,
+        "max": 1.0
+      },
+      "recall@10": {
+        "mean": 0.9583333333333334,
+        "n_queries": 8,
+        "min": 0.6666666666666666,
+        "max": 1.0
+      },
+      "precision@10": {
+        "mean": 0.2125,
+        "n_queries": 8,
+        "min": 0.1,
+        "max": 0.3
+      },
+      "ndcg@10": {
+        "mean": 0.9798692665257984,
+        "n_queries": 8,
+        "min": 0.9324441894571632,
+        "max": 1.0
+      },
+      "mrr@10": {
+        "mean": 1.0,
+        "n_queries": 8,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "map@10": {
+        "mean": 0.8685515873015873,
+        "n_queries": 8,
+        "min": 0.6666666666666666,
+        "max": 1.0
+      }
+    }
+  },
+  "latency_seconds": {
+    "n_queries": 44,
+    "embed_s": {
+      "mean": 0.20837548881767856,
+      "median": 0.20830945200214046,
+      "p95": 0.27129463799792575,
+      "min": 0.13365850999980466,
+      "max": 0.43142215400439454
+    },
+    "sparse_s": {
+      "mean": 0.002426710272960587,
+      "median": 0.0020973655009584036,
+      "p95": 0.0044150039975647815,
+      "min": 0.001471659998060204,
+      "max": 0.005923488002736121
+    },
+    "qdrant_s": {
+      "mean": 0.5029795786360244,
+      "median": 0.5113725709998107,
+      "p95": 0.5899644419987453,
+      "min": 0.31028988800244406,
+      "max": 0.7217159809952136
+    },
+    "aggregate_s": {
+      "mean": 7.064213654798964e-05,
+      "median": 6.956850120332092e-05,
+      "p95": 8.65399997564964e-05,
+      "min": 4.6736000513192266e-05,
+      "max": 0.0001381050024065189
+    },
+    "rerank_s": {
+      "mean": 1.0418445343634217,
+      "median": 1.0417845569972997,
+      "p95": 1.3826781009993283,
+      "min": 0.6754356620003819,
+      "max": 1.437937843002146
+    },
+    "total_s": {
+      "mean": 1.7557435366819514,
+      "median": 1.7581693070023903,
+      "p95": 2.2017968600048334,
+      "min": 1.2225374019981246,
+      "max": 2.447935117997986
+    }
+  },
+  "startup_seconds": 11.546349646996532,
+  "warmup_seconds": 3.6161086240026634,
+  "out_of_domain": [
+    {
+      "query_id": "Q041",
+      "query": "cybercrime prosecution under the Prevention of Electronic Crimes Act 2016",
+      "production_returned": 0,
+      "production_empty": true,
+      "ranking_top1": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+      "production_file_names": []
+    },
+    {
+      "query_id": "Q042",
+      "query": "money laundering prosecution under the Anti-Money Laundering Act",
+      "production_returned": 0,
+      "production_empty": true,
+      "ranking_top1": "Accouintability Appeal No 322010 Asheer Waseem Bhati vs NAB.txt",
+      "production_file_names": []
+    },
+    {
+      "query_id": "Q043",
+      "query": "child custody and maintenance under the Guardians and Wards Act",
+      "production_returned": 0,
+      "production_empty": true,
+      "ranking_top1": "WPNo232012 Aftab Khan vs Govt of KPK.txt",
+      "production_file_names": []
+    },
+    {
+      "query_id": "Q044",
+      "query": "environmental pollution prosecution under the Pakistan Environmental Protection Act",
+      "production_returned": 0,
+      "production_empty": true,
+      "ranking_top1": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+      "production_file_names": []
+    }
+  ],
+  "per_query": [
+    {
+      "query_id": "Q001",
+      "query": "bail for a driver caught with charas hidden in the secret cavities of the vehicle",
+      "category": "bail_narcotics",
+      "candidate_points": 20,
+      "candidate_documents": 6,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM BANo2602012 Muhammad Riaz vs State.txt",
+          "score": 0.99461689,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No967-P2012 Khalid Khan vs  State.txt",
+          "score": 0.99319834,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM BA No 51-D2012 Amanullah vs State.txt",
+          "score": 0.99120428,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM BANo2602012 Muhammad Riaz vs State.txt",
+          "score": 0.99461689,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No967-P2012 Khalid Khan vs  State.txt",
+          "score": 0.99319834,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM BA No 51-D2012 Amanullah vs State.txt",
+          "score": 0.99120428,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "Cr M BA No163-P2012 Sharifa Bibi vs State.txt",
+          "score": 0.98640463,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr A No257  2612010 Ismail Khan vs  State.txt",
+          "score": 0.86219438,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr A No162009 Mst Yasmeen vs State.txt",
+          "score": 0.70601482,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM BA No967-P2012 Khalid Khan vs  State.txt": 3,
+        "CrMBA No156-P2013 Salam Noor vs State.txt": 3,
+        "CrM BA No 51-D2012 Amanullah vs State.txt": 2,
+        "CrM BA No17462011 Muhammad Afzal vs State.txt": 2
+      },
+      "timings": {
+        "embed_s": 0.133659,
+        "sparse_s": 0.001551,
+        "qdrant_s": 0.412503,
+        "aggregate_s": 4.7e-05,
+        "rerank_s": 0.676704,
+        "total_s": 1.224489
+      }
+    },
+    {
+      "query_id": "Q002",
+      "query": "is a woman passenger entitled to bail when narcotics were recovered from a vehicle driven by a co-accused",
+      "category": "bail_narcotics",
+      "candidate_points": 20,
+      "candidate_documents": 8,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr M BA No163-P2012 Sharifa Bibi vs State.txt",
+          "score": 0.99910605,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BANo2602012 Muhammad Riaz vs State.txt",
+          "score": 0.99201186,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrMBA No156-P2013 Salam Noor vs State.txt",
+          "score": 0.97337984,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr M BA No163-P2012 Sharifa Bibi vs State.txt",
+          "score": 0.99910605,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BANo2602012 Muhammad Riaz vs State.txt",
+          "score": 0.99201186,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrMBA No156-P2013 Salam Noor vs State.txt",
+          "score": 0.97337984,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BA No967-P2012 Khalid Khan vs  State.txt",
+          "score": 0.93943445,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrM BA846-P2012 Noshad vs State.txt",
+          "score": 0.89717616,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM BA No 51-D2012 Amanullah vs State.txt",
+          "score": 0.50423986,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrMNo16392009 Khan Zeb vs State.txt",
+          "score": 0.23028522,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr A No162009 Mst Yasmeen vs State.txt",
+          "score": 0.01205598,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr M BA No163-P2012 Sharifa Bibi vs State.txt": 3,
+        "CrM BANo2602012 Muhammad Riaz vs State.txt": 2,
+        "CrM BA No 51-D2012 Amanullah vs State.txt": 1,
+        "CrM BA No17462011 Muhammad Afzal vs State.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.163412,
+        "sparse_s": 0.001548,
+        "qdrant_s": 0.41964,
+        "aggregate_s": 4.8e-05,
+        "rerank_s": 0.72606,
+        "total_s": 1.310735
+      }
+    },
+    {
+      "query_id": "Q003",
+      "query": "small quantity of charas and further inquiry under section 497(2) CrPC for bail",
+      "category": "bail_narcotics",
+      "candidate_points": 20,
+      "candidate_documents": 14,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM BA No 51-D2012 Amanullah vs State.txt",
+          "score": 0.96990572,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No1603 of 2010 Ibrahim vs State.txt",
+          "score": 0.96261974,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrMBA No16792009 MMunir vs MIshaq.txt",
+          "score": 0.88582573,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM BA No 51-D2012 Amanullah vs State.txt",
+          "score": 0.96990572,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No1603 of 2010 Ibrahim vs State.txt",
+          "score": 0.96261974,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrMBA No16792009 MMunir vs MIshaq.txt",
+          "score": 0.88582573,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BA No16002009 Tahir vs State.txt",
+          "score": 0.82012091,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrM BANo2602012 Muhammad Riaz vs State.txt",
+          "score": 0.80468122,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM No687-A2012 Shahzeb Khan vs State.txt",
+          "score": 0.69537989,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrM BA No17462011 Muhammad Afzal vs State.txt",
+          "score": 0.69528499,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrM BA846-P2012 Noshad vs State.txt",
+          "score": 0.61011759,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr A No257  2612010 Ismail Khan vs  State.txt",
+          "score": 0.40039208,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "Cr M BA No276-M2013 Muhammad Akram etc vs State etc.txt",
+          "score": 0.16136311,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM BA No1603 of 2010 Ibrahim vs State.txt": 3,
+        "CrM BA846-P2012 Noshad vs State.txt": 3,
+        "CrM BA No17462011 Muhammad Afzal vs State.txt": 2,
+        "CrM BANo2602012 Muhammad Riaz vs State.txt": 2
+      },
+      "timings": {
+        "embed_s": 0.145242,
+        "sparse_s": 0.001496,
+        "qdrant_s": 0.445443,
+        "aggregate_s": 5.2e-05,
+        "rerank_s": 0.70294,
+        "total_s": 1.295204
+      }
+    },
+    {
+      "query_id": "Q004",
+      "query": "appeal against narcotics conviction where independent witnesses were not associated and samples went to FSL",
+      "category": "criminal_appeal",
+      "candidate_points": 20,
+      "candidate_documents": 10,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr A No162009 Mst Yasmeen vs State.txt",
+          "score": 0.99850487,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr A No162009 Mst Yasmeen vs State.txt",
+          "score": 0.99850487,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BANo2602012 Muhammad Riaz vs State.txt",
+          "score": 0.55438393,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM BA No967-P2012 Khalid Khan vs  State.txt",
+          "score": 0.23671774,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BA No16002009 Tahir vs State.txt",
+          "score": 0.02428143,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M BA No276-M2013 Muhammad Akram etc vs State etc.txt",
+          "score": 0.01994134,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr A No6242011 Salih Muhammad vs Niaz Muhammad.txt",
+          "score": 0.0079491,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr A No3002010 Kashif vs State.txt",
+          "score": 0.00615708,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrA No402011 Gul Zareen vs Hamzada.txt",
+          "score": 0.00336188,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr A No582006 Sher Muhammad vs Muhammad Akber.txt",
+          "score": 0.000743,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrA No 62-B2004 Mst Salam Bibi vs Aman Ullah.txt",
+          "score": 0.00012189,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr A No162009 Mst Yasmeen vs State.txt": 3,
+        "Cr A No257  2612010 Ismail Khan vs  State.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.162112,
+        "sparse_s": 0.00179,
+        "qdrant_s": 0.414241,
+        "aggregate_s": 5.2e-05,
+        "rerank_s": 0.773063,
+        "total_s": 1.351287
+      }
+    },
+    {
+      "query_id": "Q005",
+      "query": "return or superdari of a vehicle seized in a narcotics case to its registered owner",
+      "category": "property_revision",
+      "candidate_points": 20,
+      "candidate_documents": 6,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrA No 78-M of 2013 Naseeb Rahman Vs The State.txt",
+          "score": 0.99443631,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr A No6242011 Salih Muhammad vs Niaz Muhammad.txt",
+          "score": 0.79973902,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrA No 78-M of 2013 Naseeb Rahman Vs The State.txt",
+          "score": 0.99443631,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr A No6242011 Salih Muhammad vs Niaz Muhammad.txt",
+          "score": 0.79973902,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M BA No163-P2012 Sharifa Bibi vs State.txt",
+          "score": 0.43080958,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BANo2602012 Muhammad Riaz vs State.txt",
+          "score": 0.23107858,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrM BA No 51-D2012 Amanullah vs State.txt",
+          "score": 0.01144112,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr M BA No7142011 Faiz ul Wahab vs State.txt",
+          "score": 1.526e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrA No 78-M of 2013 Naseeb Rahman Vs The State.txt": 3,
+        "Cr A No6242011 Salih Muhammad vs Niaz Muhammad.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.145416,
+        "sparse_s": 0.001996,
+        "qdrant_s": 0.399608,
+        "aggregate_s": 5.3e-05,
+        "rerank_s": 0.675436,
+        "total_s": 1.222537
+      }
+    },
+    {
+      "query_id": "Q006",
+      "query": "bail in a murder case where the occurrence was unseen and there is no ocular account",
+      "category": "bail_murder",
+      "candidate_points": 20,
+      "candidate_documents": 12,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr M BA No1021-P2012 Jehanzada vs State.txt",
+          "score": 0.99668428,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.9527114,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M BA No1240-P2012 Luqman vs Daud etc.txt",
+          "score": 0.91882436,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr M BA No1021-P2012 Jehanzada vs State.txt",
+          "score": 0.99668428,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.9527114,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M BA No1240-P2012 Luqman vs Daud etc.txt",
+          "score": 0.91882436,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrMBA No16792009 MMunir vs MIshaq.txt",
+          "score": 0.90256896,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr A No582006 Sher Muhammad vs Muhammad Akber.txt",
+          "score": 0.67275164,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM BA No15912009 Said Rehman vs State.txt",
+          "score": 0.66525761,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr A No3002010 Kashif vs State.txt",
+          "score": 0.3261437,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt",
+          "score": 0.28092619,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "CrM BCA No4802011 Muhammad Ishfaq vs Sher Ahmad.txt",
+          "score": 0.01847887,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "Cr Misc B Application No 27-D of 2013 Kaleem Ullah VS The State.txt",
+          "score": 0.00595492,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr M BA No1021-P2012 Jehanzada vs State.txt": 3,
+        "CrM BA No15912009 Said Rehman vs State.txt": 3,
+        "Cr M BA No1240-P2012 Luqman vs Daud etc.txt": 3,
+        "CrMBA No16792009 MMunir vs MIshaq.txt": 2,
+        "Cr M BA No276-M2013 Muhammad Akram etc vs State etc.txt": 2
+      },
+      "timings": {
+        "embed_s": 0.147613,
+        "sparse_s": 0.001998,
+        "qdrant_s": 0.416871,
+        "aggregate_s": 5.6e-05,
+        "rerank_s": 0.889231,
+        "total_s": 1.455802
+      }
+    },
+    {
+      "query_id": "Q007",
+      "query": "bail refused in a murder case where the accused had a specific role and medical evidence supported the prosecution",
+      "category": "bail_murder",
+      "candidate_points": 20,
+      "candidate_documents": 13,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM BA No 60-D2013 Hussain Khan vs State.txt",
+          "score": 0.99417921,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt",
+          "score": 0.99060607,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M No293-M  BCA No1-M2013 Said Muhammad vs Muahammad Siraj ud Din etc.txt",
+          "score": 0.90978775,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM BA No 60-D2013 Hussain Khan vs State.txt",
+          "score": 0.99417921,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt",
+          "score": 0.99060607,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M No293-M  BCA No1-M2013 Said Muhammad vs Muahammad Siraj ud Din etc.txt",
+          "score": 0.90978775,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BANo17172009 Shaukat vs State.txt",
+          "score": 0.82794723,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrM No687-A2012 Shahzeb Khan vs State.txt",
+          "score": 0.69821965,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM BA No14512010 Mehmood Shah vs Noor Zada etc.txt",
+          "score": 0.57286623,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrM BANo17942009 Inamullah vs State.txt",
+          "score": 0.21975787,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrM BA No385-M2012 Muhammad Shoaib vs State.txt",
+          "score": 0.21923242,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr M BA No276-M2013 Muhammad Akram etc vs State etc.txt",
+          "score": 0.19422889,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrM BA No1312013 Pinda Khan vs  State.txt",
+          "score": 0.08187735,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM BA No14512010 Mehmood Shah vs Noor Zada etc.txt": 3,
+        "Cr M BA No7142011 Faiz ul Wahab vs State.txt": 3,
+        "CrM BA No 60-D2013 Hussain Khan vs State.txt": 3,
+        "CrM BANo17942009 Inamullah vs State.txt": 3,
+        "CrM BA No942013 Shah Behram vs State.txt": 2,
+        "CrMBANo5862010 Khyal Nawaz vs State.txt": 2
+      },
+      "timings": {
+        "embed_s": 0.151786,
+        "sparse_s": 0.001552,
+        "qdrant_s": 0.42573,
+        "aggregate_s": 5.2e-05,
+        "rerank_s": 0.843645,
+        "total_s": 1.422795
+      }
+    },
+    {
+      "query_id": "Q008",
+      "query": "cancellation of bail where the accused absconded for many years",
+      "category": "bail_cancellation",
+      "candidate_points": 20,
+      "candidate_documents": 9,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr M No293-M  BCA No1-M2013 Said Muhammad vs Muahammad Siraj ud Din etc.txt",
+          "score": 0.99755854,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt",
+          "score": 0.97864459,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M BCA No18022012 Ahmad Ali Jan vs Irfan.txt",
+          "score": 0.97214095,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr M No293-M  BCA No1-M2013 Said Muhammad vs Muahammad Siraj ud Din etc.txt",
+          "score": 0.99755854,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt",
+          "score": 0.97864459,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M BCA No18022012 Ahmad Ali Jan vs Irfan.txt",
+          "score": 0.97214095,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BCA No4802011 Muhammad Ishfaq vs Sher Ahmad.txt",
+          "score": 0.97201084,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrM BCANo14222009 Wahabuddin vs Fayaz Khan.txt",
+          "score": 0.96161968,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr M BCA No32-D2012 State vs Abdul Sattar.txt",
+          "score": 0.95750738,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrM BA No1312013 Pinda Khan vs  State.txt",
+          "score": 0.95237421,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.55058608,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "CrM BA No16002009 Tahir vs State.txt",
+          "score": 0.08248367,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr M No293-M  BCA No1-M2013 Said Muhammad vs Muahammad Siraj ud Din etc.txt": 3,
+        "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt": 2,
+        "Cr M BCA No18022012 Ahmad Ali Jan vs Irfan.txt": 1,
+        "CrM BCANo14222009 Wahabuddin vs Fayaz Khan.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.154628,
+        "sparse_s": 0.001472,
+        "qdrant_s": 0.410287,
+        "aggregate_s": 5.3e-05,
+        "rerank_s": 0.728802,
+        "total_s": 1.295272
+      }
+    },
+    {
+      "query_id": "Q009",
+      "query": "bail for attempt to murder where there was a single injury on a non-vital part and no repetition of fire",
+      "category": "bail_injury",
+      "candidate_points": 20,
+      "candidate_documents": 10,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM No687-A2012 Shahzeb Khan vs State.txt",
+          "score": 0.99576402,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No1079-P2012 Fakhre Alam vs State.txt",
+          "score": 0.99037213,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M BA No4-D2011 Rafi Ullah vs State.txt",
+          "score": 0.98639749,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM No687-A2012 Shahzeb Khan vs State.txt",
+          "score": 0.99576402,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No1079-P2012 Fakhre Alam vs State.txt",
+          "score": 0.99037213,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M BA No4-D2011 Rafi Ullah vs State.txt",
+          "score": 0.98639749,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BCA No4802011 Muhammad Ishfaq vs Sher Ahmad.txt",
+          "score": 0.97621699,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrM BANo17942009 Inamullah vs State.txt",
+          "score": 0.26177426,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr M BCA No18022012 Ahmad Ali Jan vs Irfan.txt",
+          "score": 0.0004459,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrMBANo5862010 Khyal Nawaz vs State.txt",
+          "score": 0.00041881,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrM BA No385-M2012 Muhammad Shoaib vs State.txt",
+          "score": 0.00013281,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "CrMBA No156-P2013 Salam Noor vs State.txt",
+          "score": 6.34e-05,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrM BA No 60-D2013 Hussain Khan vs State.txt",
+          "score": 6.273e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM No687-A2012 Shahzeb Khan vs State.txt": 3,
+        "CrM BA No1079-P2012 Fakhre Alam vs State.txt": 3,
+        "Cr M BA No4-D2011 Rafi Ullah vs State.txt": 2,
+        "CrMBANo5862010 Khyal Nawaz vs State.txt": 2
+      },
+      "timings": {
+        "embed_s": 0.157969,
+        "sparse_s": 0.001577,
+        "qdrant_s": 0.428028,
+        "aggregate_s": 4.9e-05,
+        "rerank_s": 0.805447,
+        "total_s": 1.393098
+      }
+    },
+    {
+      "query_id": "Q010",
+      "query": "bail for a juvenile accused in an injury case",
+      "category": "bail_injury",
+      "candidate_points": 20,
+      "candidate_documents": 12,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrMBA No4422012 Yasir Rehan vs State etc.txt",
+          "score": 0.96860586,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No14512010 Mehmood Shah vs Noor Zada etc.txt",
+          "score": 0.81167948,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrMBA No4422012 Yasir Rehan vs State etc.txt",
+          "score": 0.96860586,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No14512010 Mehmood Shah vs Noor Zada etc.txt",
+          "score": 0.81167948,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M BA No472012 Irfan vs Shah Jehan.txt",
+          "score": 0.65485189,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrMBANo5862010 Khyal Nawaz vs State.txt",
+          "score": 0.57389462,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M No293-M  BCA No1-M2013 Said Muhammad vs Muahammad Siraj ud Din etc.txt",
+          "score": 0.5290825,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM BA No385-M2012 Muhammad Shoaib vs State.txt",
+          "score": 0.26796231,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr A No162009 Mst Yasmeen vs State.txt",
+          "score": 0.07363438,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrM No687-A2012 Shahzeb Khan vs State.txt",
+          "score": 0.00956469,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr M BCA No18022012 Ahmad Ali Jan vs Irfan.txt",
+          "score": 0.0009187,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrA No402011 Gul Zareen vs Hamzada.txt",
+          "score": 6.049e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrMBA No4422012 Yasir Rehan vs State etc.txt": 3,
+        "CrM BANo614-A2013 Muahmmad Ibrar vs State.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.145106,
+        "sparse_s": 0.002313,
+        "qdrant_s": 0.31029,
+        "aggregate_s": 5.4e-05,
+        "rerank_s": 0.895051,
+        "total_s": 1.352848
+      }
+    },
+    {
+      "query_id": "Q011",
+      "query": "bail in an abduction for ransom case",
+      "category": "bail_abduction",
+      "candidate_points": 20,
+      "candidate_documents": 13,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM BANo15782009 Wahab vs State.txt",
+          "score": 0.9987242,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No1312013 Pinda Khan vs  State.txt",
+          "score": 0.99061282,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM BANo15782009 Wahab vs State.txt",
+          "score": 0.9987242,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No1312013 Pinda Khan vs  State.txt",
+          "score": 0.99061282,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrMBA No430-P2013 Ismail Khan vs State.txt",
+          "score": 0.32351893,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BA No1603 of 2010 Ibrahim vs State.txt",
+          "score": 0.02921241,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M BA No472012 Irfan vs Shah Jehan.txt",
+          "score": 0.01319012,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr M BA No4-D2011 Rafi Ullah vs State.txt",
+          "score": 0.01231568,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrM BA No14512010 Mehmood Shah vs Noor Zada etc.txt",
+          "score": 0.00961459,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr M No293-M  BCA No1-M2013 Said Muhammad vs Muahammad Siraj ud Din etc.txt",
+          "score": 0.00949772,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "CrM BANo2602012 Muhammad Riaz vs State.txt",
+          "score": 0.00276036,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrM BA No1006-P2012 Fazal Amin vs State.txt",
+          "score": 0.00270321,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM BANo15782009 Wahab vs State.txt": 3,
+        "CrM BA No1312013 Pinda Khan vs  State.txt": 3,
+        "CrM BA No44-D2012 Sahib Jan vs State.txt": 2,
+        "CrMBA No430-P2013 Ismail Khan vs State.txt": 2,
+        "CrM QP No312012  Hafiz Shadoo vs Abdul Ghaffar.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.171957,
+        "sparse_s": 0.001929,
+        "qdrant_s": 0.470262,
+        "aggregate_s": 8.7e-05,
+        "rerank_s": 1.038959,
+        "total_s": 1.683478
+      }
+    },
+    {
+      "query_id": "Q012",
+      "query": "cancellation of bail in a murder case after a compromise with the legal heirs",
+      "category": "bail_cancellation",
+      "candidate_points": 20,
+      "candidate_documents": 10,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM BCA No4802011 Muhammad Ishfaq vs Sher Ahmad.txt",
+          "score": 0.99178881,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt",
+          "score": 0.78272075,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM BCA No4802011 Muhammad Ishfaq vs Sher Ahmad.txt",
+          "score": 0.99178881,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt",
+          "score": 0.78272075,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM BCANo14222009 Wahabuddin vs Fayaz Khan.txt",
+          "score": 0.61658222,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "Cr M BCA No18022012 Ahmad Ali Jan vs Irfan.txt",
+          "score": 0.17921726,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.08981518,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr M No293-M  BCA No1-M2013 Said Muhammad vs Muahammad Siraj ud Din etc.txt",
+          "score": 0.06783673,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr MiscQuashment No14-A 2011 Yasir Khan vs Imtiaz etc.txt",
+          "score": 0.01974135,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt",
+          "score": 0.00303042,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr A No3002010 Kashif vs State.txt",
+          "score": 0.0016165,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "Cr A No5862011 Yasir Arafat vs  State.txt",
+          "score": 0.00071557,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM BCA No4802011 Muhammad Ishfaq vs Sher Ahmad.txt": 3,
+        "Cr M BCA No18022012 Ahmad Ali Jan vs Irfan.txt": 2,
+        "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt": 2,
+        "CrM BCANo14222009 Wahabuddin vs Fayaz Khan.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.431422,
+        "sparse_s": 0.004205,
+        "qdrant_s": 0.721716,
+        "aggregate_s": 0.000129,
+        "rerank_s": 1.290393,
+        "total_s": 2.447935
+      }
+    },
+    {
+      "query_id": "Q013",
+      "query": "bail in a rape case involving a minor school-going girl",
+      "category": "bail_other",
+      "candidate_points": 20,
+      "candidate_documents": 8,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM BA No385-M2012 Muhammad Shoaib vs State.txt",
+          "score": 0.99761108,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM BA No385-M2012 Muhammad Shoaib vs State.txt",
+          "score": 0.99761108,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrMBA No4422012 Yasir Rehan vs State etc.txt",
+          "score": 0.09657236,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM No687-A2012 Shahzeb Khan vs State.txt",
+          "score": 0.00464713,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BA No1312013 Pinda Khan vs  State.txt",
+          "score": 0.00067976,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrMBANo5862010 Khyal Nawaz vs State.txt",
+          "score": 0.00045691,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrMBA No16792009 MMunir vs MIshaq.txt",
+          "score": 0.0001164,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr M BA No7142011 Faiz ul Wahab vs State.txt",
+          "score": 6.369e-05,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt",
+          "score": 1.366e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM BA No385-M2012 Muhammad Shoaib vs State.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.271295,
+        "sparse_s": 0.002566,
+        "qdrant_s": 0.494888,
+        "aggregate_s": 7.4e-05,
+        "rerank_s": 1.084809,
+        "total_s": 1.853674
+      }
+    },
+    {
+      "query_id": "Q014",
+      "query": "bail for causing Itlaf-i-salahiyyat-i-udw under section 336 PPC",
+      "category": "bail_injury",
+      "candidate_points": 20,
+      "candidate_documents": 12,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM BANo17172009 Shaukat vs State.txt",
+          "score": 0.99776774,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BANo614-A2013 Muahmmad Ibrar vs State.txt",
+          "score": 0.98997852,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrMBA No4422012 Yasir Rehan vs State etc.txt",
+          "score": 0.97048311,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM BANo17172009 Shaukat vs State.txt",
+          "score": 0.99776774,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BANo614-A2013 Muahmmad Ibrar vs State.txt",
+          "score": 0.98997852,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrMBA No4422012 Yasir Rehan vs State etc.txt",
+          "score": 0.97048311,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BA No385-M2012 Muhammad Shoaib vs State.txt",
+          "score": 0.00198171,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M QP No44-B2011 Qadar Ullah vs SHO.txt",
+          "score": 0.0004849,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM BANo2602012 Muhammad Riaz vs State.txt",
+          "score": 0.00013561,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrMBA No430-P2013 Ismail Khan vs State.txt",
+          "score": 0.00010596,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr M BA No1240-P2012 Luqman vs Daud etc.txt",
+          "score": 0.00010035,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "CrM BANo240-D2012 Naseeb Khan vs State.txt",
+          "score": 6.645e-05,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrMNo16392009 Khan Zeb vs State.txt",
+          "score": 6.279e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM BANo17172009 Shaukat vs State.txt": 3,
+        "CrM BANo614-A2013 Muahmmad Ibrar vs State.txt": 3,
+        "CrMBA No4422012 Yasir Rehan vs State etc.txt": 2
+      },
+      "timings": {
+        "embed_s": 0.272496,
+        "sparse_s": 0.002388,
+        "qdrant_s": 0.544122,
+        "aggregate_s": 7.2e-05,
+        "rerank_s": 1.382678,
+        "total_s": 2.201797
+      }
+    },
+    {
+      "query_id": "Q015",
+      "query": "murder bail where the accused was nominated later and no specific role was attributed to him",
+      "category": "bail_murder",
+      "candidate_points": 20,
+      "candidate_documents": 12,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrMBA No16792009 MMunir vs MIshaq.txt",
+          "score": 0.99249336,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No1312013 Pinda Khan vs  State.txt",
+          "score": 0.99177731,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM BA No14512010 Mehmood Shah vs Noor Zada etc.txt",
+          "score": 0.99075183,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrMBA No16792009 MMunir vs MIshaq.txt",
+          "score": 0.99249336,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No1312013 Pinda Khan vs  State.txt",
+          "score": 0.99177731,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM BA No14512010 Mehmood Shah vs Noor Zada etc.txt",
+          "score": 0.99075183,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BA No 60-D2013 Hussain Khan vs State.txt",
+          "score": 0.973799,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M No293-M  BCA No1-M2013 Said Muhammad vs Muahammad Siraj ud Din etc.txt",
+          "score": 0.96080937,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr M BA No4-D2011 Rafi Ullah vs State.txt",
+          "score": 0.95012562,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrM BCA No4802011 Muhammad Ishfaq vs Sher Ahmad.txt",
+          "score": 0.63975815,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr M BCA No18022012 Ahmad Ali Jan vs Irfan.txt",
+          "score": 0.43501485,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.20099769,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt",
+          "score": 0.18901972,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr M BA No276-M2013 Muhammad Akram etc vs State etc.txt": 3,
+        "CrMBA No16792009 MMunir vs MIshaq.txt": 3,
+        "Cr M BA No1021-P2012 Jehanzada vs State.txt": 2,
+        "CrM BA No15912009 Said Rehman vs State.txt": 2,
+        "Cr M BA No1240-P2012 Luqman vs Daud etc.txt": 2
+      },
+      "timings": {
+        "embed_s": 0.22951,
+        "sparse_s": 0.002573,
+        "qdrant_s": 0.589964,
+        "aggregate_s": 7.8e-05,
+        "rerank_s": 1.18211,
+        "total_s": 2.004279
+      }
+    },
+    {
+      "query_id": "Q016",
+      "query": "quashing of FIR in a dishonoured cheque case where the trial has already commenced",
+      "category": "quashment",
+      "candidate_points": 20,
+      "candidate_documents": 13,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt",
+          "score": 0.98651085,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt",
+          "score": 0.98651085,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No 60-D2013 Hussain Khan vs State.txt",
+          "score": 0.39440851,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM BA No16972009 Muhammad Fayaz vs State.txt",
+          "score": 0.23940044,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrA No 78-M of 2013 Naseeb Rahman Vs The State.txt",
+          "score": 0.04837969,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M BA No276-M2013 Muhammad Akram etc vs State etc.txt",
+          "score": 0.02775448,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr M QP No154 CrM No15502011 Allah Baksh vs State.txt",
+          "score": 0.00680181,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr M No293-M  BCA No1-M2013 Said Muhammad vs Muahammad Siraj ud Din etc.txt",
+          "score": 0.00013573,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr MiscQuashment No14-A 2011 Yasir Khan vs Imtiaz etc.txt",
+          "score": 9.361e-05,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "CrM QP No312012  Hafiz Shadoo vs Abdul Ghaffar.txt",
+          "score": 8.715e-05,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrMBA No156-P2013 Salam Noor vs State.txt",
+          "score": 3.223e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt": 3,
+        "Cr M QP No154 CrM No15502011 Allah Baksh vs State.txt": 1,
+        "CrM BA No16972009 Muhammad Fayaz vs State.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.246251,
+        "sparse_s": 0.003695,
+        "qdrant_s": 0.566291,
+        "aggregate_s": 8e-05,
+        "rerank_s": 1.437938,
+        "total_s": 2.254309
+      }
+    },
+    {
+      "query_id": "Q017",
+      "query": "quashing of FIR for disobedience of an order duly promulgated by a public servant",
+      "category": "quashment",
+      "candidate_points": 20,
+      "candidate_documents": 10,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr M QP No1762010 Manzoor Ahmad vs state.txt",
+          "score": 0.99925263,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.75802474,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr M QP No1762010 Manzoor Ahmad vs state.txt",
+          "score": 0.99925263,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.75802474,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M QP No44-B2011 Qadar Ullah vs SHO.txt",
+          "score": 0.11560718,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "Cr M QP No612011 Nasimullah vs  Ijaz Hussain.txt",
+          "score": 0.06884972,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+          "score": 0.04575437,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt",
+          "score": 0.005917,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr M QP No154 CrM No15502011 Allah Baksh vs State.txt",
+          "score": 0.00258922,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr A No992011 Nazir Ahmad vs Shaukat Zaman.txt",
+          "score": 0.00080885,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr MiscQuashment No14-A 2011 Yasir Khan vs Imtiaz etc.txt",
+          "score": 0.00011861,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "Cr M QP No462011 Mir Tiaz Khan vs  State.txt",
+          "score": 4.86e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr M QP No1762010 Manzoor Ahmad vs state.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.257659,
+        "sparse_s": 0.00281,
+        "qdrant_s": 0.502024,
+        "aggregate_s": 7.2e-05,
+        "rerank_s": 1.413121,
+        "total_s": 2.175728
+      }
+    },
+    {
+      "query_id": "Q018",
+      "query": "quashing of a gambling FIR registered by the police without authority of the magistrate",
+      "category": "quashment",
+      "candidate_points": 20,
+      "candidate_documents": 6,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM QP No74-D2013 Abdul Ahad vs State.txt",
+          "score": 0.99552183,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM QP No74-D2013 Abdul Ahad vs State.txt",
+          "score": 0.99552183,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M QP No44-B2011 Qadar Ullah vs SHO.txt",
+          "score": 0.71000172,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr MiscQuashment No14-A 2011 Yasir Khan vs Imtiaz etc.txt",
+          "score": 0.20857686,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt",
+          "score": 0.02954637,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M QP No154 CrM No15502011 Allah Baksh vs State.txt",
+          "score": 0.01501043,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr M QP No1762010 Manzoor Ahmad vs state.txt",
+          "score": 0.00472714,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM QP No74-D2013 Abdul Ahad vs State.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.226531,
+        "sparse_s": 0.002318,
+        "qdrant_s": 0.587451,
+        "aggregate_s": 7e-05,
+        "rerank_s": 1.319397,
+        "total_s": 2.135805
+      }
+    },
+    {
+      "query_id": "Q019",
+      "query": "quashing of FIR arising from a property and caste dispute",
+      "category": "quashment",
+      "candidate_points": 20,
+      "candidate_documents": 10,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr M QP No462011 Mir Tiaz Khan vs  State.txt",
+          "score": 0.9142526,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr M QP No462011 Mir Tiaz Khan vs  State.txt",
+          "score": 0.9142526,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M QP No612011 Nasimullah vs  Ijaz Hussain.txt",
+          "score": 0.0220853,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M QP No44-B2011 Qadar Ullah vs SHO.txt",
+          "score": 0.00486573,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt",
+          "score": 0.00214405,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M QP No154 CrM No15502011 Allah Baksh vs State.txt",
+          "score": 0.00101503,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM QP No74-D2013 Abdul Ahad vs State.txt",
+          "score": 2.083e-05,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "WPNo18432010 Yousaf vs Bahader Sher.txt",
+          "score": 1.918e-05,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrM QP No312012  Hafiz Shadoo vs Abdul Ghaffar.txt",
+          "score": 1.848e-05,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr M QP No1762010 Manzoor Ahmad vs state.txt",
+          "score": 1.389e-05,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "WPNo232012 Aftab Khan vs Govt of KPK.txt",
+          "score": 1.294e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr M QP No462011 Mir Tiaz Khan vs  State.txt": 3,
+        "Cr M QP No612011 Nasimullah vs  Ijaz Hussain.txt": 2,
+        "WPNo18432010 Yousaf vs Bahader Sher.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.210168,
+        "sparse_s": 0.002852,
+        "qdrant_s": 0.472995,
+        "aggregate_s": 7.7e-05,
+        "rerank_s": 1.29954,
+        "total_s": 1.985679
+      }
+    },
+    {
+      "query_id": "Q020",
+      "query": "quashing of FIR where the alleged abductee married the accused and appeared before the High Court",
+      "category": "quashment",
+      "candidate_points": 20,
+      "candidate_documents": 9,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM QP No312012  Hafiz Shadoo vs Abdul Ghaffar.txt",
+          "score": 0.99870644,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM QP No312012  Hafiz Shadoo vs Abdul Ghaffar.txt",
+          "score": 0.99870644,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt",
+          "score": 0.63969498,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M QP No154 CrM No15502011 Allah Baksh vs State.txt",
+          "score": 0.37803701,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrMBA No430-P2013 Ismail Khan vs State.txt",
+          "score": 0.19975719,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.1080605,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM BA No1312013 Pinda Khan vs  State.txt",
+          "score": 0.06457035,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrM BA No44-D2012 Sahib Jan vs State.txt",
+          "score": 0.02334153,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr M QP No462011 Mir Tiaz Khan vs  State.txt",
+          "score": 0.00120613,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr MiscQuashment No14-A 2011 Yasir Khan vs Imtiaz etc.txt",
+          "score": 0.0002369,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM QP No312012  Hafiz Shadoo vs Abdul Ghaffar.txt": 3,
+        "CrMBA No430-P2013 Ismail Khan vs State.txt": 2
+      },
+      "timings": {
+        "embed_s": 0.246744,
+        "sparse_s": 0.002238,
+        "qdrant_s": 0.597495,
+        "aggregate_s": 8.5e-05,
+        "rerank_s": 1.331892,
+        "total_s": 2.178505
+      }
+    },
+    {
+      "query_id": "Q021",
+      "query": "quashing of a second FIR and proceedings against a police official",
+      "category": "quashment",
+      "candidate_points": 20,
+      "candidate_documents": 13,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr M QP No44-B2011 Qadar Ullah vs SHO.txt",
+          "score": 0.99193047,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.90255669,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr M QP No44-B2011 Qadar Ullah vs SHO.txt",
+          "score": 0.99193047,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.90255669,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt",
+          "score": 0.0333405,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "Cr M QP No154 CrM No15502011 Allah Baksh vs State.txt",
+          "score": 0.03099388,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M BCA No32-D2012 State vs Abdul Sattar.txt",
+          "score": 0.00802667,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Accouintability Appeal No 322010 Asheer Waseem Bhati vs NAB.txt",
+          "score": 0.00407427,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr A No6242011 Salih Muhammad vs Niaz Muhammad.txt",
+          "score": 0.00360617,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrM QP No74-D2013 Abdul Ahad vs State.txt",
+          "score": 0.00104333,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr A No162009 Mst Yasmeen vs State.txt",
+          "score": 0.00069059,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrM QP No312012  Hafiz Shadoo vs Abdul Ghaffar.txt",
+          "score": 0.00036986,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr M QP No44-B2011 Qadar Ullah vs SHO.txt": 3,
+        "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt": 3,
+        "Cr MiscQuashment No14-A 2011 Yasir Khan vs Imtiaz etc.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.201293,
+        "sparse_s": 0.001991,
+        "qdrant_s": 0.499776,
+        "aggregate_s": 6.9e-05,
+        "rerank_s": 1.348219,
+        "total_s": 2.05139
+      }
+    },
+    {
+      "query_id": "Q022",
+      "query": "quashing of an FIR alleging fraud and forgery in a business transaction",
+      "category": "quashment",
+      "candidate_points": 20,
+      "candidate_documents": 8,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr M QP No154 CrM No15502011 Allah Baksh vs State.txt",
+          "score": 0.9911724,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr M QP No154 CrM No15502011 Allah Baksh vs State.txt",
+          "score": 0.9911724,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr A No992011 Nazir Ahmad vs Shaukat Zaman.txt",
+          "score": 0.09013827,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt",
+          "score": 0.08037957,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "Cr M QP No462011 Mir Tiaz Khan vs  State.txt",
+          "score": 0.07864646,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M QP No44-B2011 Qadar Ullah vs SHO.txt",
+          "score": 0.03460982,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM QP No312012  Hafiz Shadoo vs Abdul Ghaffar.txt",
+          "score": 0.00016792,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 7.939e-05,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr M QP No1762010 Manzoor Ahmad vs state.txt",
+          "score": 2.863e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr M QP No154 CrM No15502011 Allah Baksh vs State.txt": 3,
+        "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt": 1,
+        "Cr A No992011 Nazir Ahmad vs Shaukat Zaman.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.23114,
+        "sparse_s": 0.001948,
+        "qdrant_s": 0.552749,
+        "aggregate_s": 0.000138,
+        "rerank_s": 1.312228,
+        "total_s": 2.098267
+      }
+    },
+    {
+      "query_id": "Q023",
+      "query": "appeal against acquittal in a murder case where the eye-witness testimony was doubtful",
+      "category": "criminal_appeal",
+      "candidate_points": 20,
+      "candidate_documents": 10,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt",
+          "score": 0.9706229,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrA No402011 Gul Zareen vs Hamzada.txt",
+          "score": 0.83747071,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrA No 62-B2004 Mst Salam Bibi vs Aman Ullah.txt",
+          "score": 0.77060392,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt",
+          "score": 0.9706229,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrA No402011 Gul Zareen vs Hamzada.txt",
+          "score": 0.83747071,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrA No 62-B2004 Mst Salam Bibi vs Aman Ullah.txt",
+          "score": 0.77060392,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "Cr A No582006 Sher Muhammad vs Muhammad Akber.txt",
+          "score": 0.55267765,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrANo3392013 State vs Wahid.txt",
+          "score": 0.4695716,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr A No3002010 Kashif vs State.txt",
+          "score": 0.29428252,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrM BA No942013 Shah Behram vs State.txt",
+          "score": 0.24810725,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+          "score": 0.19812318,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr M BCA No18022012 Ahmad Ali Jan vs Irfan.txt",
+          "score": 0.05474636,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrM BCANo14222009 Wahabuddin vs Fayaz Khan.txt",
+          "score": 0.00937142,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrA No 62-B2004 Mst Salam Bibi vs Aman Ullah.txt": 3,
+        "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt": 3,
+        "Cr A No582006 Sher Muhammad vs Muhammad Akber.txt": 2,
+        "CrA No402011 Gul Zareen vs Hamzada.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.26263,
+        "sparse_s": 0.005923,
+        "qdrant_s": 0.586556,
+        "aggregate_s": 6.9e-05,
+        "rerank_s": 1.137007,
+        "total_s": 1.992228
+      }
+    },
+    {
+      "query_id": "Q024",
+      "query": "appeal against conviction for rash and negligent driving causing death",
+      "category": "criminal_appeal",
+      "candidate_points": 20,
+      "candidate_documents": 8,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr A No5862011 Yasir Arafat vs  State.txt",
+          "score": 0.98862171,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr Misc B Application No 27-D of 2013 Kaleem Ullah VS The State.txt",
+          "score": 0.98057657,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr A No5862011 Yasir Arafat vs  State.txt",
+          "score": 0.98862171,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr Misc B Application No 27-D of 2013 Kaleem Ullah VS The State.txt",
+          "score": 0.98057657,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt",
+          "score": 0.00636295,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "Cr A No582006 Sher Muhammad vs Muhammad Akber.txt",
+          "score": 0.00589159,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrA No402011 Gul Zareen vs Hamzada.txt",
+          "score": 0.00540523,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM BA No967-P2012 Khalid Khan vs  State.txt",
+          "score": 0.00179169,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrM BA No 60-D2013 Hussain Khan vs State.txt",
+          "score": 0.00084212,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrA No 62-B2004 Mst Salam Bibi vs Aman Ullah.txt",
+          "score": 0.00015867,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr A No5862011 Yasir Arafat vs  State.txt": 3,
+        "Cr Misc B Application No 27-D of 2013 Kaleem Ullah VS The State.txt": 2
+      },
+      "timings": {
+        "embed_s": 0.221872,
+        "sparse_s": 0.003054,
+        "qdrant_s": 0.488039,
+        "aggregate_s": 6.7e-05,
+        "rerank_s": 1.053334,
+        "total_s": 1.766412
+      }
+    },
+    {
+      "query_id": "Q025",
+      "query": "appeal against conviction for embezzlement by a bank employee under NAB",
+      "category": "criminal_appeal",
+      "candidate_points": 20,
+      "candidate_documents": 9,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Accouintability Appeal No 322010 Asheer Waseem Bhati vs NAB.txt",
+          "score": 0.9671325,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Accouintability Appeal No 322010 Asheer Waseem Bhati vs NAB.txt",
+          "score": 0.9671325,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No16972009 Muhammad Fayaz vs State.txt",
+          "score": 0.00526282,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr A No992011 Nazir Ahmad vs Shaukat Zaman.txt",
+          "score": 0.00254061,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "Cr A No582006 Sher Muhammad vs Muhammad Akber.txt",
+          "score": 0.00216762,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrA No402011 Gul Zareen vs Hamzada.txt",
+          "score": 0.00194862,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+          "score": 0.00113023,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt",
+          "score": 0.00084452,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrA No 62-B2004 Mst Salam Bibi vs Aman Ullah.txt",
+          "score": 0.0002839,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "CrMBA No16792009 MMunir vs MIshaq.txt",
+          "score": 1.464e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Accouintability Appeal No 322010 Asheer Waseem Bhati vs NAB.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.233054,
+        "sparse_s": 0.002021,
+        "qdrant_s": 0.556977,
+        "aggregate_s": 6.7e-05,
+        "rerank_s": 1.108393,
+        "total_s": 1.900551
+      }
+    },
+    {
+      "query_id": "Q026",
+      "query": "appeal against conviction for manufacturing substandard medicines under the Drugs Act",
+      "category": "criminal_appeal",
+      "candidate_points": 20,
+      "candidate_documents": 4,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+          "score": 0.9878613,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+          "score": 0.9878613,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr A No582006 Sher Muhammad vs Muhammad Akber.txt",
+          "score": 0.00203522,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrA No402011 Gul Zareen vs Hamzada.txt",
+          "score": 0.0002311,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrA No 62-B2004 Mst Salam Bibi vs Aman Ullah.txt",
+          "score": 0.00015111,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.229156,
+        "sparse_s": 0.003057,
+        "qdrant_s": 0.550926,
+        "aggregate_s": 6.4e-05,
+        "rerank_s": 1.105507,
+        "total_s": 1.888742
+      }
+    },
+    {
+      "query_id": "Q027",
+      "query": "appeal against acquittal filed beyond the limitation period",
+      "category": "criminal_appeal",
+      "candidate_points": 20,
+      "candidate_documents": 9,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrANo3392013 State vs Wahid.txt",
+          "score": 0.9941106,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrANo3392013 State vs Wahid.txt",
+          "score": 0.9941106,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrA No402011 Gul Zareen vs Hamzada.txt",
+          "score": 0.46108798,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrA No 62-B2004 Mst Salam Bibi vs Aman Ullah.txt",
+          "score": 0.44409967,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "Cr A No582006 Sher Muhammad vs Muhammad Akber.txt",
+          "score": 0.3605223,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+          "score": 0.35668801,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr M QP No612011 Nasimullah vs  Ijaz Hussain.txt",
+          "score": 0.04138716,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr A No992011 Nazir Ahmad vs Shaukat Zaman.txt",
+          "score": 0.01310961,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrM BANo17172009 Shaukat vs State.txt",
+          "score": 0.00168101,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt",
+          "score": 0.00124518,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrANo3392013 State vs Wahid.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.209338,
+        "sparse_s": 0.004415,
+        "qdrant_s": 0.512062,
+        "aggregate_s": 7.4e-05,
+        "rerank_s": 1.090456,
+        "total_s": 1.816388
+      }
+    },
+    {
+      "query_id": "Q028",
+      "query": "reduction of sentence in a murder case due to mitigating circumstances",
+      "category": "criminal_appeal",
+      "candidate_points": 20,
+      "candidate_documents": 10,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr A No3002010 Kashif vs State.txt",
+          "score": 0.98080838,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr A No3002010 Kashif vs State.txt",
+          "score": 0.98080838,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr A No162009 Mst Yasmeen vs State.txt",
+          "score": 0.62168615,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt",
+          "score": 0.00562957,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BA846-P2012 Noshad vs State.txt",
+          "score": 0.00244556,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.00023572,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr A No582006 Sher Muhammad vs Muhammad Akber.txt",
+          "score": 3.661e-05,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr M BA No472012 Irfan vs Shah Jehan.txt",
+          "score": 2.536e-05,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrMBA No4422012 Yasir Rehan vs State etc.txt",
+          "score": 2.18e-05,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "CrM BANo2602012 Muhammad Riaz vs State.txt",
+          "score": 1.252e-05,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrM BANo240-D2012 Naseeb Khan vs State.txt",
+          "score": 1.24e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr A No3002010 Kashif vs State.txt": 3,
+        "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.220111,
+        "sparse_s": 0.002611,
+        "qdrant_s": 0.539901,
+        "aggregate_s": 7.2e-05,
+        "rerank_s": 1.104613,
+        "total_s": 1.867348
+      }
+    },
+    {
+      "query_id": "Q029",
+      "query": "appeal against a narcotics conviction where the samples were sent to the Forensic Science Laboratory",
+      "category": "criminal_appeal",
+      "candidate_points": 20,
+      "candidate_documents": 9,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr A No162009 Mst Yasmeen vs State.txt",
+          "score": 0.99400302,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No942013 Shah Behram vs State.txt",
+          "score": 0.87150555,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt",
+          "score": 0.84612216,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr A No162009 Mst Yasmeen vs State.txt",
+          "score": 0.99400302,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No942013 Shah Behram vs State.txt",
+          "score": 0.87150555,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt",
+          "score": 0.84612216,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+          "score": 0.55309921,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrMBA No156-P2013 Salam Noor vs State.txt",
+          "score": 0.33042599,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM BA No967-P2012 Khalid Khan vs  State.txt",
+          "score": 0.04301746,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr A No582006 Sher Muhammad vs Muhammad Akber.txt",
+          "score": 0.00223596,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrM BA846-P2012 Noshad vs State.txt",
+          "score": 0.00113322,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "CrM BA No16002009 Tahir vs State.txt",
+          "score": 3.434e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr A No162009 Mst Yasmeen vs State.txt": 3,
+        "Cr A No257  2612010 Ismail Khan vs  State.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.239374,
+        "sparse_s": 0.00256,
+        "qdrant_s": 0.579532,
+        "aggregate_s": 7.1e-05,
+        "rerank_s": 1.138426,
+        "total_s": 1.96
+      }
+    },
+    {
+      "query_id": "Q030",
+      "query": "revision petition for summoning a material witness under section 540 CrPC",
+      "category": "procedure",
+      "candidate_points": 20,
+      "candidate_documents": 6,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrR No382012 State through Muslim vs Mumtaz Ali.txt",
+          "score": 0.99736977,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr R No322011 Shafqatullah Khan vs Jehan Zeb Khan.txt",
+          "score": 0.99657524,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrR No34-A2013 Muhammad Abid Khan vs Mst Noreen.txt",
+          "score": 0.94165107,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrR No382012 State through Muslim vs Mumtaz Ali.txt",
+          "score": 0.99736977,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr R No322011 Shafqatullah Khan vs Jehan Zeb Khan.txt",
+          "score": 0.99657524,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrR No34-A2013 Muhammad Abid Khan vs Mst Noreen.txt",
+          "score": 0.94165107,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrA No 62-B2004 Mst Salam Bibi vs Aman Ullah.txt",
+          "score": 0.00092212,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrM BA No14512010 Mehmood Shah vs Noor Zada etc.txt",
+          "score": 0.00042046,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrA No402011 Gul Zareen vs Hamzada.txt",
+          "score": 4.079e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr R No322011 Shafqatullah Khan vs Jehan Zeb Khan.txt": 3,
+        "CrR No382012 State through Muslim vs Mumtaz Ali.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.252439,
+        "sparse_s": 0.001946,
+        "qdrant_s": 0.576022,
+        "aggregate_s": 6.7e-05,
+        "rerank_s": 1.099782,
+        "total_s": 1.930299
+      }
+    },
+    {
+      "query_id": "Q031",
+      "query": "challenge to a detention order under the Maintenance of Public Order Ordinance",
+      "category": "constitutional",
+      "candidate_points": 20,
+      "candidate_documents": 7,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "WPNo232012 Aftab Khan vs Govt of KPK.txt",
+          "score": 0.99675441,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "WPNo232012 Aftab Khan vs Govt of KPK.txt",
+          "score": 0.99675441,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.00691549,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM QP No74-D2013 Abdul Ahad vs State.txt",
+          "score": 0.00298775,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+          "score": 0.00047983,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M QP No1762010 Manzoor Ahmad vs state.txt",
+          "score": 0.00041986,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "BANo2212013 Imran Khan vs State.txt",
+          "score": 3.528e-05,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr A No992011 Nazir Ahmad vs Shaukat Zaman.txt",
+          "score": 1.777e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "WPNo232012 Aftab Khan vs Govt of KPK.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.199544,
+        "sparse_s": 0.002009,
+        "qdrant_s": 0.539657,
+        "aggregate_s": 7.5e-05,
+        "rerank_s": 0.981544,
+        "total_s": 1.722866
+      }
+    },
+    {
+      "query_id": "Q032",
+      "query": "habeas corpus petition alleging illegal confinement of a husband",
+      "category": "constitutional",
+      "candidate_points": 20,
+      "candidate_documents": 11,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrR No34-A2013 Muhammad Abid Khan vs Mst Noreen.txt",
+          "score": 0.99814784,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrR No34-A2013 Muhammad Abid Khan vs Mst Noreen.txt",
+          "score": 0.99814784,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BANo17172009 Shaukat vs State.txt",
+          "score": 0.0275959,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "WPNo18432010 Yousaf vs Bahader Sher.txt",
+          "score": 0.006689,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "Cr MiscQuashment No14-A 2011 Yasir Khan vs Imtiaz etc.txt",
+          "score": 0.00424037,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "WPNo232012 Aftab Khan vs Govt of KPK.txt",
+          "score": 0.00265663,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM QP No74-D2013 Abdul Ahad vs State.txt",
+          "score": 0.00107785,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrMBA No430-P2013 Ismail Khan vs State.txt",
+          "score": 0.00049351,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.00039512,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr A No992011 Nazir Ahmad vs Shaukat Zaman.txt",
+          "score": 5.75e-05,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrM BANo614-A2013 Muahmmad Ibrar vs State.txt",
+          "score": 5.398e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrR No34-A2013 Muhammad Abid Khan vs Mst Noreen.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.195634,
+        "sparse_s": 0.002046,
+        "qdrant_s": 0.436039,
+        "aggregate_s": 8e-05,
+        "rerank_s": 0.919128,
+        "total_s": 1.552969
+      }
+    },
+    {
+      "query_id": "Q033",
+      "query": "constitutional petition against illegal dispossession of property",
+      "category": "constitutional",
+      "candidate_points": 20,
+      "candidate_documents": 7,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "WPNo18432010 Yousaf vs Bahader Sher.txt",
+          "score": 0.99944523,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M QP No612011 Nasimullah vs  Ijaz Hussain.txt",
+          "score": 0.98940434,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "WPNo18432010 Yousaf vs Bahader Sher.txt",
+          "score": 0.99944523,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M QP No612011 Nasimullah vs  Ijaz Hussain.txt",
+          "score": 0.98940434,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "WPNo232012 Aftab Khan vs Govt of KPK.txt",
+          "score": 0.11755373,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "Cr M QP No462011 Mir Tiaz Khan vs  State.txt",
+          "score": 0.03266472,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrM QP No74-D2013 Abdul Ahad vs State.txt",
+          "score": 0.00550286,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr MiscQuashment No14-A 2011 Yasir Khan vs Imtiaz etc.txt",
+          "score": 0.00331363,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 7.544e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "WPNo18432010 Yousaf vs Bahader Sher.txt": 3,
+        "Cr M QP No612011 Nasimullah vs  Ijaz Hussain.txt": 2
+      },
+      "timings": {
+        "embed_s": 0.183752,
+        "sparse_s": 0.002146,
+        "qdrant_s": 0.461035,
+        "aggregate_s": 6.7e-05,
+        "rerank_s": 0.927671,
+        "total_s": 1.574707
+      }
+    },
+    {
+      "query_id": "Q034",
+      "query": "cancellation of bail where the accused did not misuse bail for fifteen months",
+      "category": "bail_cancellation",
+      "candidate_points": 20,
+      "candidate_documents": 8,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr M BCA No18022012 Ahmad Ali Jan vs Irfan.txt",
+          "score": 0.99798755,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt",
+          "score": 0.99157228,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM BCA No4802011 Muhammad Ishfaq vs Sher Ahmad.txt",
+          "score": 0.98701354,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr M BCA No18022012 Ahmad Ali Jan vs Irfan.txt",
+          "score": 0.99798755,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt",
+          "score": 0.99157228,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM BCA No4802011 Muhammad Ishfaq vs Sher Ahmad.txt",
+          "score": 0.98701354,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BCANo14222009 Wahabuddin vs Fayaz Khan.txt",
+          "score": 0.98652218,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M BCA No32-D2012 State vs Abdul Sattar.txt",
+          "score": 0.96308476,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr M No293-M  BCA No1-M2013 Said Muhammad vs Muahammad Siraj ud Din etc.txt",
+          "score": 0.9598091,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.43876509,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr R No322011 Shafqatullah Khan vs Jehan Zeb Khan.txt",
+          "score": 0.00016185,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr M BCA No18022012 Ahmad Ali Jan vs Irfan.txt": 3,
+        "CrM BCANo14222009 Wahabuddin vs Fayaz Khan.txt": 2,
+        "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt": 2
+      },
+      "timings": {
+        "embed_s": 0.203522,
+        "sparse_s": 0.001963,
+        "qdrant_s": 0.536941,
+        "aggregate_s": 6.6e-05,
+        "rerank_s": 0.96918,
+        "total_s": 1.711707
+      }
+    },
+    {
+      "query_id": "Q035",
+      "query": "bail for theft in a dwelling house committed at night",
+      "category": "bail_other",
+      "candidate_points": 20,
+      "candidate_documents": 10,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr M BA No472012 Irfan vs Shah Jehan.txt",
+          "score": 0.99882615,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr M BA No472012 Irfan vs Shah Jehan.txt",
+          "score": 0.99882615,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M BA No276-M2013 Muhammad Akram etc vs State etc.txt",
+          "score": 0.10949891,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt",
+          "score": 0.03116753,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrMNo16392009 Khan Zeb vs State.txt",
+          "score": 0.02793766,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "BANo2212013 Imran Khan vs State.txt",
+          "score": 0.01916271,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM No687-A2012 Shahzeb Khan vs State.txt",
+          "score": 0.0035581,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr A No3002010 Kashif vs State.txt",
+          "score": 0.00051003,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr M BA No1021-P2012 Jehanzada vs State.txt",
+          "score": 0.00028104,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "CrM BA No1006-P2012 Fazal Amin vs State.txt",
+          "score": 9.775e-05,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "Cr R No322011 Shafqatullah Khan vs Jehan Zeb Khan.txt",
+          "score": 7.504e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr M BA No472012 Irfan vs Shah Jehan.txt": 3,
+        "CrMNo16392009 Khan Zeb vs State.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.186239,
+        "sparse_s": 0.00198,
+        "qdrant_s": 0.501595,
+        "aggregate_s": 6.6e-05,
+        "rerank_s": 0.893075,
+        "total_s": 1.583001
+      }
+    },
+    {
+      "query_id": "Q036",
+      "query": "bail for possession of forged currency notes",
+      "category": "bail_other",
+      "candidate_points": 20,
+      "candidate_documents": 13,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM BA No1006-P2012 Fazal Amin vs State.txt",
+          "score": 0.99848999,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM BA No1006-P2012 Fazal Amin vs State.txt",
+          "score": 0.99848999,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA846-P2012 Noshad vs State.txt",
+          "score": 0.00276124,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M BA No1021-P2012 Jehanzada vs State.txt",
+          "score": 0.00082468,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM No687-A2012 Shahzeb Khan vs State.txt",
+          "score": 0.00039275,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrM BA No942013 Shah Behram vs State.txt",
+          "score": 0.00032263,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM BA No16972009 Muhammad Fayaz vs State.txt",
+          "score": 0.00031364,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrM BA  No925-P2012 Muhammad Sherin vs  State.txt",
+          "score": 0.00027002,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrM BANo2602012 Muhammad Riaz vs State.txt",
+          "score": 0.00019013,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr M BA No472012 Irfan vs Shah Jehan.txt",
+          "score": 0.00016952,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "Cr A No992011 Nazir Ahmad vs Shaukat Zaman.txt",
+          "score": 0.00013933,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM BA No1006-P2012 Fazal Amin vs State.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.177512,
+        "sparse_s": 0.002021,
+        "qdrant_s": 0.439394,
+        "aggregate_s": 7e-05,
+        "rerank_s": 0.79007,
+        "total_s": 1.409111
+      }
+    },
+    {
+      "query_id": "Q037",
+      "query": "bail for possession of illegal weapons and explosives",
+      "category": "bail_other",
+      "candidate_points": 20,
+      "candidate_documents": 10,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr M BCA No32-D2012 State vs Abdul Sattar.txt",
+          "score": 0.99541685,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA  No925-P2012 Muhammad Sherin vs  State.txt",
+          "score": 0.96595596,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "BANo2212013 Imran Khan vs State.txt",
+          "score": 0.93377882,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr M BCA No32-D2012 State vs Abdul Sattar.txt",
+          "score": 0.99541685,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA  No925-P2012 Muhammad Sherin vs  State.txt",
+          "score": 0.96595596,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "BANo2212013 Imran Khan vs State.txt",
+          "score": 0.93377882,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BA No44-D2012 Sahib Jan vs State.txt",
+          "score": 0.90574252,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrM No687-A2012 Shahzeb Khan vs State.txt",
+          "score": 0.86094221,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM BANo240-D2012 Naseeb Khan vs State.txt",
+          "score": 0.00081209,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "WPNo18432010 Yousaf vs Bahader Sher.txt",
+          "score": 0.00040606,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrM BA No942013 Shah Behram vs State.txt",
+          "score": 0.00027492,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt",
+          "score": 0.00019629,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "Cr M QP No612011 Nasimullah vs  Ijaz Hussain.txt",
+          "score": 5.332e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM BA  No925-P2012 Muhammad Sherin vs  State.txt": 3,
+        "BANo2212013 Imran Khan vs State.txt": 3,
+        "Cr M BCA No32-D2012 State vs Abdul Sattar.txt": 2,
+        "CrM No687-A2012 Shahzeb Khan vs State.txt": 1,
+        "CrM BA No44-D2012 Sahib Jan vs State.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.207411,
+        "sparse_s": 0.002459,
+        "qdrant_s": 0.534442,
+        "aggregate_s": 6.9e-05,
+        "rerank_s": 1.04461,
+        "total_s": 1.789032
+      }
+    },
+    {
+      "query_id": "Q038",
+      "query": "bail for dishonestly issuing a cheque under section 489-F PPC",
+      "category": "bail_other",
+      "candidate_points": 20,
+      "candidate_documents": 8,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt",
+          "score": 0.99602039,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No16972009 Muhammad Fayaz vs State.txt",
+          "score": 0.99336868,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt",
+          "score": 0.99602039,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No16972009 Muhammad Fayaz vs State.txt",
+          "score": 0.99336868,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM BA No1006-P2012 Fazal Amin vs State.txt",
+          "score": 0.47813413,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "Cr M QP No154 CrM No15502011 Allah Baksh vs State.txt",
+          "score": 0.30915427,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrM BANo240-D2012 Naseeb Khan vs State.txt",
+          "score": 0.05740837,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM BA  No925-P2012 Muhammad Sherin vs  State.txt",
+          "score": 0.03357737,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrM BA No16002009 Tahir vs State.txt",
+          "score": 0.01009703,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Accouintability Appeal No 322010 Asheer Waseem Bhati vs NAB.txt",
+          "score": 9.654e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM BA No16972009 Muhammad Fayaz vs State.txt": 3,
+        "CrM BANo240-D2012 Naseeb Khan vs State.txt": 1,
+        "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.213393,
+        "sparse_s": 0.002112,
+        "qdrant_s": 0.52617,
+        "aggregate_s": 8.5e-05,
+        "rerank_s": 1.287788,
+        "total_s": 2.029619
+      }
+    },
+    {
+      "query_id": "Q039",
+      "query": "bail for possessing liquor where the prosecution did not obtain a chemical analysis report",
+      "category": "bail_other",
+      "candidate_points": 20,
+      "candidate_documents": 13,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "CrM BA No16002009 Tahir vs State.txt",
+          "score": 0.99901531,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrM BA No16002009 Tahir vs State.txt",
+          "score": 0.99901531,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr A No162009 Mst Yasmeen vs State.txt",
+          "score": 0.50952937,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM BA  No925-P2012 Muhammad Sherin vs  State.txt",
+          "score": 0.01678046,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BA846-P2012 Noshad vs State.txt",
+          "score": 0.00609641,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrMBANo5862010 Khyal Nawaz vs State.txt",
+          "score": 0.00265254,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "BANo2212013 Imran Khan vs State.txt",
+          "score": 0.00141214,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr M BCA No18022012 Ahmad Ali Jan vs Irfan.txt",
+          "score": 0.00100107,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt",
+          "score": 0.00079529,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr Misc B Application No 27-D of 2013 Kaleem Ullah VS The State.txt",
+          "score": 0.00078385,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrM BA No967-P2012 Khalid Khan vs  State.txt",
+          "score": 0.00028817,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "CrM BA No16002009 Tahir vs State.txt": 3
+      },
+      "timings": {
+        "embed_s": 0.20905,
+        "sparse_s": 0.002033,
+        "qdrant_s": 0.546034,
+        "aggregate_s": 6.7e-05,
+        "rerank_s": 0.992692,
+        "total_s": 1.749926
+      }
+    },
+    {
+      "query_id": "Q040",
+      "query": "quashing of proceedings against a police official accused of extortion",
+      "category": "quashment",
+      "candidate_points": 20,
+      "candidate_documents": 13,
+      "rerank_pairs": 20,
+      "production": [
+        {
+          "rank": 1,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.99822167,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M QP No44-B2011 Qadar Ullah vs SHO.txt",
+          "score": 0.99576127,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M QP No612011 Nasimullah vs  Ijaz Hussain.txt",
+          "score": 0.99473801,
+          "reranked": true
+        }
+      ],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt",
+          "score": 0.99822167,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr M QP No44-B2011 Qadar Ullah vs SHO.txt",
+          "score": 0.99576127,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M QP No612011 Nasimullah vs  Ijaz Hussain.txt",
+          "score": 0.99473801,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM QP No1622012 Sami-ud-Din vs Nadeem Ahmad.txt",
+          "score": 0.54867724,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M QP No154 CrM No15502011 Allah Baksh vs State.txt",
+          "score": 0.46588497,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Accouintability Appeal No 322010 Asheer Waseem Bhati vs NAB.txt",
+          "score": 0.16387018,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr M BCA No32-D2012 State vs Abdul Sattar.txt",
+          "score": 0.01582834,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "Cr A No992011 Nazir Ahmad vs Shaukat Zaman.txt",
+          "score": 0.01290962,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr A No162009 Mst Yasmeen vs State.txt",
+          "score": 0.0077975,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "Cr M BCANo4242010 Basraj Bibi vs Ibraheem.txt",
+          "score": 0.00562537,
+          "reranked": true
+        }
+      ],
+      "qrels": {
+        "Cr M QPNo5-B2011 Afsar Ali Vs SP Bannu etc.txt": 3,
+        "Cr M QP No44-B2011 Qadar Ullah vs SHO.txt": 1
+      },
+      "timings": {
+        "embed_s": 0.207568,
+        "sparse_s": 0.001951,
+        "qdrant_s": 0.464273,
+        "aggregate_s": 6.8e-05,
+        "rerank_s": 1.19248,
+        "total_s": 1.86638
+      }
+    },
+    {
+      "query_id": "Q041",
+      "query": "cybercrime prosecution under the Prevention of Electronic Crimes Act 2016",
+      "category": "out_of_domain",
+      "candidate_points": 20,
+      "candidate_documents": 11,
+      "rerank_pairs": 20,
+      "production": [],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+          "score": 0.00182999,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "Cr A No992011 Nazir Ahmad vs Shaukat Zaman.txt",
+          "score": 0.00138549,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM BANo240-D2012 Naseeb Khan vs State.txt",
+          "score": 0.00049698,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM QP No74-D2013 Abdul Ahad vs State.txt",
+          "score": 4.568e-05,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrM BANo15782009 Wahab vs State.txt",
+          "score": 2.959e-05,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "CrM BA No942013 Shah Behram vs State.txt",
+          "score": 2.505e-05,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr M BA No1240-P2012 Luqman vs Daud etc.txt",
+          "score": 2.336e-05,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrM BA No16002009 Tahir vs State.txt",
+          "score": 1.687e-05,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "CrMBA No4422012 Yasir Rehan vs State etc.txt",
+          "score": 1.645e-05,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrMBA No16792009 MMunir vs MIshaq.txt",
+          "score": 1.524e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {},
+      "timings": {
+        "embed_s": 0.195299,
+        "sparse_s": 0.002082,
+        "qdrant_s": 0.517913,
+        "aggregate_s": 7.4e-05,
+        "rerank_s": 0.923032,
+        "total_s": 1.638443
+      }
+    },
+    {
+      "query_id": "Q042",
+      "query": "money laundering prosecution under the Anti-Money Laundering Act",
+      "category": "out_of_domain",
+      "candidate_points": 20,
+      "candidate_documents": 8,
+      "rerank_pairs": 20,
+      "production": [],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "Accouintability Appeal No 322010 Asheer Waseem Bhati vs NAB.txt",
+          "score": 0.06189653,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrM BA No1006-P2012 Fazal Amin vs State.txt",
+          "score": 0.00793909,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrM BA No1312013 Pinda Khan vs  State.txt",
+          "score": 0.00555314,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "Cr A No992011 Nazir Ahmad vs Shaukat Zaman.txt",
+          "score": 0.00536723,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr A No582006 Sher Muhammad vs Muhammad Akber.txt",
+          "score": 0.00072298,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "BANo2212013 Imran Khan vs State.txt",
+          "score": 0.00050947,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+          "score": 0.00036217,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrR No34-A2013 Muhammad Abid Khan vs Mst Noreen.txt",
+          "score": 1.748e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {},
+      "timings": {
+        "embed_s": 0.213785,
+        "sparse_s": 0.002255,
+        "qdrant_s": 0.529839,
+        "aggregate_s": 7.6e-05,
+        "rerank_s": 0.960491,
+        "total_s": 1.706486
+      }
+    },
+    {
+      "query_id": "Q043",
+      "query": "child custody and maintenance under the Guardians and Wards Act",
+      "category": "out_of_domain",
+      "candidate_points": 20,
+      "candidate_documents": 15,
+      "rerank_pairs": 20,
+      "production": [],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "WPNo232012 Aftab Khan vs Govt of KPK.txt",
+          "score": 8.298e-05,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "CrA No 78-M of 2013 Naseeb Rahman Vs The State.txt",
+          "score": 2.258e-05,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+          "score": 1.981e-05,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrM BA No385-M2012 Muhammad Shoaib vs State.txt",
+          "score": 1.936e-05,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "CrM BANo240-D2012 Naseeb Khan vs State.txt",
+          "score": 1.936e-05,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "Cr A No6242011 Salih Muhammad vs Niaz Muhammad.txt",
+          "score": 1.915e-05,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "Cr M BA No472012 Irfan vs Shah Jehan.txt",
+          "score": 1.915e-05,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrM BA No1079-P2012 Fakhre Alam vs State.txt",
+          "score": 1.822e-05,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr A No992011 Nazir Ahmad vs Shaukat Zaman.txt",
+          "score": 1.528e-05,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "CrM No687-A2012 Shahzeb Khan vs State.txt",
+          "score": 1.505e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {},
+      "timings": {
+        "embed_s": 0.211484,
+        "sparse_s": 0.004989,
+        "qdrant_s": 0.514696,
+        "aggregate_s": 7.4e-05,
+        "rerank_s": 0.986833,
+        "total_s": 1.718122
+      }
+    },
+    {
+      "query_id": "Q044",
+      "query": "environmental pollution prosecution under the Pakistan Environmental Protection Act",
+      "category": "out_of_domain",
+      "candidate_points": 20,
+      "candidate_documents": 12,
+      "rerank_pairs": 20,
+      "production": [],
+      "ranking_top10": [
+        {
+          "rank": 1,
+          "file_name": "CrA No 120 of 2008 MS Parke Davis  Co Ltd vs Provincial Drug Inspector etc.txt",
+          "score": 0.55969071,
+          "reranked": true
+        },
+        {
+          "rank": 2,
+          "file_name": "BANo2212013 Imran Khan vs State.txt",
+          "score": 0.06051415,
+          "reranked": true
+        },
+        {
+          "rank": 3,
+          "file_name": "Cr M QP No154 CrM No15502011 Allah Baksh vs State.txt",
+          "score": 0.03777289,
+          "reranked": true
+        },
+        {
+          "rank": 4,
+          "file_name": "CrA 134 to 137 MRNo12 CrR No36 2010 Muhammad Ashraf vs  Javed etc.txt",
+          "score": 0.03727301,
+          "reranked": true
+        },
+        {
+          "rank": 5,
+          "file_name": "Cr M BCA No32-D2012 State vs Abdul Sattar.txt",
+          "score": 0.00920513,
+          "reranked": true
+        },
+        {
+          "rank": 6,
+          "file_name": "WPNo232012 Aftab Khan vs Govt of KPK.txt",
+          "score": 0.0053256,
+          "reranked": true
+        },
+        {
+          "rank": 7,
+          "file_name": "CrM BA No15912009 Said Rehman vs State.txt",
+          "score": 0.00063596,
+          "reranked": true
+        },
+        {
+          "rank": 8,
+          "file_name": "CrMNo16392009 Khan Zeb vs State.txt",
+          "score": 0.00051558,
+          "reranked": true
+        },
+        {
+          "rank": 9,
+          "file_name": "Cr M QP No462011 Mir Tiaz Khan vs  State.txt",
+          "score": 0.00028877,
+          "reranked": true
+        },
+        {
+          "rank": 10,
+          "file_name": "Accouintability Appeal No 322010 Asheer Waseem Bhati vs NAB.txt",
+          "score": 8.783e-05,
+          "reranked": true
+        }
+      ],
+      "qrels": {},
+      "timings": {
+        "embed_s": 0.192946,
+        "sparse_s": 0.002333,
+        "qdrant_s": 0.510683,
+        "aggregate_s": 7.3e-05,
+        "rerank_s": 0.977384,
+        "total_s": 1.68346
+      }
+    }
+  ],
+  "warnings": [
+    "Relevance labels are provisional and require FYP student verification.",
+    "p95 is estimated from 40 in-domain queries; it is not a production SLA.",
+    "Score thresholds are sigmoid values from a general-domain reranker, not calibrated probabilities.",
+    "No LLM generation was invoked; these are retrieval-only measurements."
+  ]
+}

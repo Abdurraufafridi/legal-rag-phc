@@ -1,0 +1,17 @@
+{
+  "name": "baseline_main",
+  "mode": "hybrid",
+  "fusion": "rrf",
+  "prefetch_limit": 50,
+  "candidate_limit": 50,
+  "rerank": true,
+  "rerank_max_docs": null,
+  "max_chunks_per_doc": null,
+  "final_top_k": 3,
+  "threshold": 0.75,
+  "include_document_level": true,
+  "dedupe_chunks": false,
+  "date_start": null,
+  "date_end": null,
+  "comment": "Replicates main.py: dense+sparse RRF prefetch 50, rerank all candidate chunks, top 3, threshold 0.75."
+}

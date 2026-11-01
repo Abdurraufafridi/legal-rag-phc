@@ -1,0 +1,20 @@
+{
+  "name": "exp07_chunk_level_tinybert_l2",
+  "mode": "hybrid",
+  "fusion": "rrf",
+  "prefetch_limit": 50,
+  "candidate_limit": 50,
+  "rerank": true,
+  "rerank_max_docs": null,
+  "max_chunks_per_doc": null,
+  "final_top_k": 3,
+  "threshold": 0.75,
+  "include_document_level": false,
+  "dedupe_chunks": false,
+  "date_start": null,
+  "date_end": null,
+  "embedding_max_seq_length": 512,
+  "reranker_max_length": 512,
+  "comment": "exp01 with lighter reranker cross-encoder/ms-marco-TinyBERT-L-2-v2; measure quality/latency trade-off.",
+  "reranker_model": "cross-encoder/ms-marco-TinyBERT-L-2-v2"
+}

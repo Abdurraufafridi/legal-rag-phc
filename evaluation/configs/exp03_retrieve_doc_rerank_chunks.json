@@ -1,0 +1,20 @@
+{
+  "name": "exp03_retrieve_doc_rerank_chunks",
+  "mode": "hybrid",
+  "fusion": "rrf",
+  "prefetch_limit": 50,
+  "candidate_limit": 50,
+  "rerank": true,
+  "rerank_max_docs": null,
+  "max_chunks_per_doc": null,
+  "final_top_k": 3,
+  "threshold": 0.75,
+  "include_document_level": true,
+  "rerank_include_document_level": false,
+  "dedupe_chunks": false,
+  "date_start": null,
+  "date_end": null,
+  "embedding_max_seq_length": 512,
+  "reranker_max_length": 512,
+  "comment": "Keep document-level points as retrieval candidates but exclude their full-text payloads from cross-encoder pairs to avoid 512-token batch padding."
+}

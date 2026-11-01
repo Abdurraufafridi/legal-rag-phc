@@ -1,0 +1,60 @@
+# ============================================================
+# LEGAL RAG SYSTEM — Requirements
+# Optimized for: MacBook Pro 2018, Intel Core i9, 32GB RAM
+# Platform: macOS Sequoia 15.7.4
+# Python: 3.10.x (recommended)
+# GPU: NONE — Intel UHD 630 has NO CUDA/MPS support
+#       All torch ops run on CPU only
+# ============================================================
+
+# --------------------------
+# PyTorch — CPU only build
+# Intel UHD 630 does NOT support CUDA or Apple MPS
+# The standard pip wheel ships CPU-only on Intel macOS
+# --------------------------
+torch==2.2.2
+
+# --------------------------
+# Core ML / Embeddings
+# --------------------------
+sentence-transformers==2.7.0        # BGE-M3 dense embeddings + CrossEncoder reranker
+scikit-learn==1.4.2                 # TF-IDF sparse vectorizer
+
+# --------------------------
+# Vector Database
+# --------------------------
+qdrant-client==1.17.1               # Qdrant local persistent vector store (matches installed)
+
+# --------------------------
+# LLM / OpenRouter API
+# --------------------------
+openai==1.30.0                      # OpenRouter-compatible OpenAI client
+
+# --------------------------
+# PDF & Document Parsing
+# --------------------------
+PyMuPDF==1.24.3                     # fitz — PDF text extraction (pdf_extraction.py)
+PyPDF2==3.0.1                       # Fallback PDF reader (legal_rag_system.py uploads)
+python-docx==1.1.0                  # .docx upload support
+
+# --------------------------
+# Web API Framework
+# --------------------------
+fastapi==0.111.0                    # REST API + HTML serving
+uvicorn[standard]==0.29.0           # ASGI server
+python-multipart==0.0.9             # Required for UploadFile in FastAPI
+pydantic[email]==2.7.1              # Data validation + EmailStr
+
+# --------------------------
+# Utilities
+# --------------------------
+numpy==1.26.4                       # Array ops (compatible with torch 2.2.x)
+tqdm==4.66.4                        # Progress bars in embadding.py
+
+# --------------------------
+# Dev / Config
+# --------------------------
+python-dotenv==1.0.1                # Load .env at runtime
+flake8==7.0.0                       # Linting
+black==24.4.2                       # Code formatting
+isort==5.13.2                       # Import sorting
